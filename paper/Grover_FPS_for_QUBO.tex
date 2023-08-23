@@ -148,7 +148,7 @@
 \def\Isom{\mathrm{Isom}}
 \def\Lie{\mathrm{Lie}}
 \def\PU{\mathrm{PU}}
-\def\QC{\mathrm{QC}}
+\def\QFT{\mathrm{QFT}}
 \def\rk{\mathrm{rk}}
 \def\Re{\mathrm{Re}}
 \def\Res{\mathrm{Res}}
@@ -175,10 +175,19 @@
 \keywords{Grover Fixed Point Search, Binary Optimization}
 %\subjclass[2020]{}
 
-%\author{\'Akos Nagy}
-%\address[\'Akos Nagy]{Department of Mathematics, University of California, Santa Barbara}
-%\urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
-%\email{\href{mailto:contact@akosnagy.com}{contact@akosnagy.com}}
+\author{Atithi Acharya}
+\address[Atithi Acharya]{}
+
+\author{\'Akos Nagy}
+\address[\'Akos Nagy]{Department of Mathematics, University of California, Santa Barbara}
+\urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
+\email{\href{mailto:contact@akosnagy.com}{contact@akosnagy.com}}
+
+\author{Jaime Park}
+\address[Jaime Park]{}
+
+\author{Cindy Zhang}
+\address[Cindy Zhang]{}
 
 \hypersetup{
    unicode        = true,
@@ -212,11 +221,11 @@
 
 \section{Introduction}
 
-\textit{to be completed later...}
+\todo{to be completed later...}
 
 \smallskip
 
-\subsection*{Organization of the paper:} In \Cref{sec:algo}, \ldots
+\subsection*{Organization of the paper:} \todo{to be completed later...}
 
 \begin{comment}
 \smallskip
@@ -277,7 +286,7 @@ Note that the $\( n + 1 \)^{\mathrm{th}}$ register of $U_f \ket{x}_n \ket{y}_m$ 
 
 \medskip
 
-\subsection{Construction of $U_f$:}
+\subsection{Oracle design:}
 
 Let $\cP \( \theta \)$ be the following $m$-qubit gate
 \begin{equation}
@@ -292,7 +301,7 @@ Let $\cP \( \theta \)$ be the following $m$-qubit gate
 Thus $\cP \( \theta \) \ket{y}_m = e^{i \theta y} \ket{y}_m$. Note that
 \begin{equation}
    \begin{quantikz}
-      \lstick{$\ket{y}_m$} \qw  &  \gate{\mathrm{QFT}} &  \gate{\cP \( k \tfrac{2 \pi}{2^m} \)}  & \gate{\mathrm{QFT}^\dagger} & \qw \rstick{$\ket{z + k}_m$}
+      \lstick{$\ket{y}_m$} \qw  &  \gate{\QFT} &  \gate{\cP \( k \tfrac{2 \pi}{2^m} \)}  & \gate{\QFT^\dagger} & \qw \rstick{$\ket{z + k}_m$}
    \end{quantikz}   
 \end{equation}
 Thus if $f (x) = \sum_{i, j} Q_{i, j} x_i x_j + c$, then we need to add:
@@ -313,11 +322,11 @@ Then $Q$ can be written as
    Q = \diag \( q_1, q_2, \ldots, q_n \) + \sum\limits_{i = 1}^{n - 1} \sum\limits_{j = i + 1}^n Q_{i, j} S^{(i, j)}.
 \end{equation}
 
-Since $\mathrm{QFT}$ is unitary, only the first one is needed; similarly, only the last $\mathrm{QFT}^\dagger$ is need. Hence $U_f$ is given by:
+Since $\QFT$ is unitary, only the first one is needed; similarly, only the last $\QFT^\dagger$ is need. Hence $U_f$ is given by:
 \begin{equation}
    \begin{quantikz}
       \lstick{$\ket{x}_n$}   & \qw  & \qw                   & \qw & \ctrl{1}                                        & \qw & \ctrl{1} & \qw                 & \qw \rstick{$\ket{x}_n$} \\
-      \lstick{$\ket{y}_m$}   & \qw  & \gate{\mathrm{QFT}}   & \qw & \gate{\cP \( - Q_{1, 1} \tfrac{2 \pi}{2^m} \)}  & \qw & \gate{\ldots} & \gate{\mathrm{QFT}^\dagger} & \qw \rstick{$\ket{y - f \( x \)}_m$}
+      \lstick{$\ket{y}_m$}   & \qw  & \gate{\QFT}   & \qw & \gate{\cP \( - Q_{1, 1} \tfrac{2 \pi}{2^m} \)}  & \qw & \gate{\ldots} & \gate{\QFT^\dagger} & \qw \rstick{$\ket{y - f \( x \)}_m$}
    \end{quantikz}
 \end{equation}
 
