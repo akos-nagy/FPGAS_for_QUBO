@@ -170,9 +170,9 @@
 
 %%%%%%%%%% Other formatting %%%%%%%%%%
 
-\title{(Adaptive) Grover Fixed Point Search for QUBO}
+\title{(Adaptive) Grover Fixed-point Search for Binary Optimization Problems}
 \date{\today}
-\keywords{Grover Fixed Point Search, Binary Optimization}
+\keywords{Grover Fixed-point Search, Binary Optimization}
 %\subjclass[2020]{}
 
 \author{Atithi Acharya}
@@ -237,10 +237,90 @@
 
 \bigskip
 
-\section{Grover Fixed Points Search}
-\label{sec:algo}
+\section{(Polynomial Unconstrained) Binary Optimization}
+\label{sec:qubos}
 
+For the rest of the paper, $\Z_2^n$ denotes the space of length-$n$ bitstrings. Given a function $f : \Z_2^n \rightarrow \rl$, the associated (Unconstrained) Binary Optimization problem is the task of finding an element $x \in \Z_2^n$ such that $f (x)$ is maximal. Note that every binary function is polynomial, which can be seen by simple dimension count.
 
+Many interesting Binary Optimization problems, such as finding maximal graph cuts or the Max $2$-SAT problems are quadratic, and most of the contemporary research centers around Quadratic Unconstrained  Binary Optimization (QUBO) problems. Hence, while our results and circuit designs apply to any binary functions, we use QUBO problems as examples. Furthermore, dealing with higher degree problems require more complicated circuits which makes them more prone to noise (and thus are less NISQ-y).
+
+\medskip
+
+\subsection{Quantum Dictionaries}
+\label{sec:qdicts}
+
+The first main contribution of the paper is an oracle design for encoding operators of (arbitrary) \emph{quantum dictionaries}, as introduced in \cite{gilliam_foundational_2021}. While such designs have already existed, cf. \cite{gilliam_grover_2021}, ours has improved circuit depth, gate count, and CNOT count. Such oracles have applications, for example, in Grover type algorithms and threshold-QAOA \cite{golden_threshold_2021}.
+
+Briefly, the quantum dictionary, corresponding to a function (thought of as a classical dictionary), $F: \dom \( F \) \rightarrow \Z_2^m$, where $\dom \( F \) \subseteq \Z_2^n$, is the following quantum state on $n + m$ qubits:
+\begin{equation}
+   \ket{F} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_m.
+\end{equation}
+Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{f} = \ket{F}$. We handle signs via the ``Two's complement'' convention, in particular, a number is negative exactly when its first digit is $1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
+
+We construct these operators in three steps. First, we outline a modified version of the encoding operator given in \cite{gilliam_grover_2021} that is convenient to encode monomials, $x_{i_1} x_{i_2} \cdots x_{i_j}$. Then we show that every binary function can be rewritten in a basis of functions that can be more efficiently encoded then monomials. Finally, we modify the encoding operators of \cite{gilliam_grover_2021} to apply for our new basis.
+
+\medskip
+
+\subsection{Monomial encoder}
+\label{sec:mono}
+
+Let $f (x) = x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $m + n$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_m$ to $\ket{x}_n \ket{f (x)}_m$, for any $x \in \Z_2^n$.
+
+Let us make two definitions: Let $\QFT_m$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{m - 1} \leqslant y < 2^{m - 1}$, we have
+\begin{equation}
+   \QFT_m \ket{y}_m = 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \ket{z}_m.
+\end{equation}
+Then
+\begin{equation}
+   \QFT_m^\dagger \ket{z}_m = 2^{- \frac{m}{2}} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} e^{- \frac{2 \pi y^\prime z}{2^m} i} \ket{y^\prime}_m.
+\end{equation}
+Now let $\cP_m (k)$ be the following $m$-qubit gate
+\begin{equation}
+   \begin{quantikz}
+      \lstick{\ket{z_0}} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$ e^{\frac{2 \pi k z_0 2^{m - 1}}{2^m} i} \ket{z_1}$} \\`'
+      \vdots \\
+      \lstick{\ket{z_j}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$ e^{\frac{2 \pi z_j 2^{m - j - 1}}{2^m}} \ket{z_j}$} \\
+      \vdots \\
+      \lstick{\ket{z_{m - 1}}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^m} \)} & \qw \rstick{$ e^{\frac{2 \pi k z_{m - 1}}{2^m} i} \ket{z_m}$}
+   \end{quantikz}   
+\end{equation}
+Thus $\cP_m \( k \) \ket{z}_m = e^{\frac{2 \pi k z}{2^m} i} \ket{z}_m$.
+
+Now we can prove a well-known lemma. {\color{red} citation needed}
+
+\begin{lemma}
+   For any $- 2^{m - 1} \leqslant y < 2^{m - 1}$ and $k \in \Z$ we have
+   \begin{equation}
+      \QFT_m^\dagger \circ \cP_m \( k \) \circ \QFT_m \ket{y}_m = \ket{y + k \mod 2^{m - 1}}.
+   \end{equation}
+\end{lemma}
+
+\begin{proof}
+   First we compute
+   \begin{align}
+      \cP_m \( k \) \circ \QFT_m \ket{y}_m  &= \cP \( k \) \( 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \ket{z}_m \) \\
+         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \cP \( k \) \ket{z}_m \\
+         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \ket{z}_m
+   \end{align}
+   hence
+   \begin{align}
+      \QFT_m^\dagger \circ \cP \( k \) \circ \QFT_m \ket{y}_m  &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \QFT_m^\dagger \ket{z}_m \\
+         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} 2^{- \frac{m}{2}} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} e^{- \frac{2 \pi y^\prime z}{2^m} i} \ket{y^\prime}_m \\
+         &= 2^{- m} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k - y^\prime \) z}{2^m} i} \ket{y^\prime}_m \\
+         &= 2^{- m} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} 2^m \delta_{[y + k]_{2^{m - 1}}, [y^\prime]_{2^{m - 1}}} \ket{y^\prime}_m \\
+         &= \ket{y + k \mod 2^{m - 1}},
+   \end{align}
+   where $[ \cdot ]_{2^{m - 1}}$ is a remainder class modulo $2^{m - 1}$.
+\end{proof}
+
+\bigskip
+
+\section{Grover Fixed-point search for QUBO}
+\label{sec:grover_for_qubo}
+
+\newpage
+
+{\color{red} Everything below is old stuff that I might or might not want to include.}
 
 \noindent\textbf{Input:} A symmetric, integer-valued, $n$-by-$n$ matrix, $Q$ and a constant $c \in \Z$, or, equivalently, a quadratic function on $x \in \{ 0, 1 \}^n$ given by
 \begin{equation}

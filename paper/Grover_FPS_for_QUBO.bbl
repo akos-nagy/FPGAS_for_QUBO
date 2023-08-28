@@ -1,0 +1,57 @@
+% \bib, bibdiv, biblist are defined by the amsrefs package.
+\begin{bibdiv}
+\begin{biblist}
+
+\bib{gilliam_foundational_2021}{article}{
+      author={Gilliam, Austin},
+      author={Venci, Charlene},
+      author={Muralidharan, Sreraman},
+      author={Dorum, Vitaliy},
+      author={May, Eric},
+      author={Narasimhan, Rajesh},
+      author={Gonciulea, Constantin},
+       title={Foundational patterns for efficient quantum computing},
+        date={2021},
+         url={https://arxiv.org/abs/1907.11513},
+}
+
+\bib{gilliam_grover_2021}{article}{
+      author={Gilliam, Austin},
+      author={Woerner, Stefan},
+      author={Gonciulea, Constantin},
+       title={{Grover Adaptive Search for Constrained Polynomial Binary
+  Optimization}},
+        date={2021apr},
+        ISSN={2521-327X},
+     journal={{Quantum}},
+      volume={5},
+       pages={428},
+         url={https://doi.org/10.22331/q-2021-04-08-428},
+}
+
+\bib{golden_threshold_2021}{inproceedings}{
+      author={Golden, John},
+      author={B{\"a}rtschi, Andreas},
+      author={O'Malley, Daniel},
+      author={Eidenbenz, Stephan},
+       title={{Threshold-Based Quantum Optimization}},
+        date={2021},
+   booktitle={2021 ieee international conference on quantum computing and
+  engineering (qce)},
+       pages={137\ndash 147},
+}
+
+\bib{yoder_fixed-point_2014}{article}{
+      author={Yoder, Theodore~J.},
+      author={Low, Guang~Hao},
+      author={Chuang, Isaac~L.},
+       title={Fixed-point quantum search with an optimal number of queries},
+        date={2014Nov},
+     journal={Phys. Rev. Lett.},
+      volume={113},
+       pages={210501},
+         url={https://link.aps.org/doi/10.1103/PhysRevLett.113.210501},
+}
+
+\end{biblist}
+\end{bibdiv}

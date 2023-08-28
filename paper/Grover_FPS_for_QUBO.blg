@@ -1,0 +1,49 @@
+This is BibTeX, Version 0.99d (TeX Live 2023/Arch Linux)
+Capacity: max_strings=200000, hash_size=200000, hash_prime=170003
+The top-level auxiliary file: Grover_FPS_for_QUBO.aux
+The style file: amsrn.bst
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Reallocated singl_function (elt_size=8) to 100 items from 50.
+Database file #1: references.bib
+You've used 4 entries,
+            1497 wiz_defined-function locations,
+            431 strings with 3567 characters,
+and the built_in function-call counts, 3610 in all, are:
+= -- 130
+> -- 341
+< -- 2
++ -- 52
+- -- 316
+* -- 362
+:= -- 750
+add.period$ -- 0
+call.type$ -- 4
+change.case$ -- 30
+chr.to.int$ -- 6
+cite$ -- 4
+duplicate$ -- 219
+empty$ -- 107
+format.name$ -- 34
+if$ -- 359
+int.to.chr$ -- 0
+int.to.str$ -- 0
+missing$ -- 102
+newline$ -- 55
+num.names$ -- 8
+pop$ -- 217
+preamble$ -- 1
+purify$ -- 25
+quote$ -- 0
+skip$ -- 51
+stack$ -- 0
+substring$ -- 42
+swap$ -- 151
+text.length$ -- 37
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 32
+warning$ -- 0
+while$ -- 49
+width$ -- 0
+write$ -- 124
