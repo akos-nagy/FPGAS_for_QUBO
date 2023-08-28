@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  28 AUG 2023 16:45
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  28 AUG 2023 18:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1243,7 +1243,7 @@ bi-trary mono-mial and con-sider a quan-
  []
 
 [2] [3]
-Overfull \hbox (5.8211pt too wide) in paragraph at lines 357--358
+Overfull \hbox (5.8211pt too wide) in paragraph at lines 363--364
 []\T1/futs/m/n/12 An el-e-ment $\FML/futmi/m/it/12 x \FMS/futm/m/n/12 ^^81 [][]
 [][] 2 f\T1/futs/m/n/12 0\FML/futmi/m/it/12 ; \T1/futs/m/n/12 1\FMS/futm/m/n/12
  g[]$ \T1/futs/m/n/12 is also re-garded as a bi-nary num-ber via $\FML/futmi/m/
@@ -1255,7 +1255,7 @@ Missing character: There is no ’ ("2019) in font futr8t!
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [5]
-Overfull \hbox (6.01624pt too wide) in paragraph at lines 432--433
+Overfull \hbox (6.01624pt too wide) in paragraph at lines 438--439
 []\T1/futs/m/n/12 Fix $\FML/futmi/m/it/12 ^^N \FMS/futm/m/n/12 2 [][][][]$ \T1/
 futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
  ^^U []\FMS/futm/m/n/12 ^^81 []$\T1/futs/m/n/12 , where $\FML/futmi/m/it/12 C[]
@@ -1265,7 +1265,7 @@ futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
 
 (./Grover_FPS_for_QUBO.bbl [6])
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-62.
+68.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1279,10 +1279,10 @@ Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
 (rerunfilecheck)             Checksum: 7FB6275D423BF4CF5D7508E2B6F12422;1990.
  ) 
 Here is how much of TeX's memory you used:
- 33679 strings out of 476683
- 655816 string characters out of 5809790
- 1902018 words of memory out of 5000000
- 53166 multiletter control sequences out of 15000+600000
+ 33956 strings out of 476683
+ 662788 string characters out of 5809790
+ 1903018 words of memory out of 5000000
+ 53443 multiletter control sequences out of 15000+600000
  608135 words of font info for 106 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
  115i,22n,118p,1187b,1211s stack positions out of 10000i,1000n,20000p,200000b,200000s

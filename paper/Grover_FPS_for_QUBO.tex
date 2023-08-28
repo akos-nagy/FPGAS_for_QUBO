@@ -289,6 +289,7 @@ Thus $\cP_m \( k \) \ket{z}_m = e^{\frac{2 \pi k z}{2^m} i} \ket{z}_m$.
 Now we can prove a well-known lemma. {\color{red} citation needed}
 
 \begin{lemma}
+   \label{lemma:quantum_adder}
    For any $- 2^{m - 1} \leqslant y < 2^{m - 1}$ and $k \in \Z$ we have
    \begin{equation}
       \QFT_m^\dagger \circ \cP_m \( k \) \circ \QFT_m \ket{y}_m = \ket{y + k \mod 2^{m - 1}}.
@@ -300,18 +301,23 @@ Now we can prove a well-known lemma. {\color{red} citation needed}
    \begin{align}
       \cP_m \( k \) \circ \QFT_m \ket{y}_m  &= \cP \( k \) \( 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \ket{z}_m \) \\
          &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \cP \( k \) \ket{z}_m \\
-         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \ket{z}_m
+         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \ket{z}_m \\
+         &= \QFT_m \ket{y + k \mod 2^{m - 1}},
    \end{align}
    hence
-   \begin{align}
-      \QFT_m^\dagger \circ \cP \( k \) \circ \QFT_m \ket{y}_m  &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \QFT_m^\dagger \ket{z}_m \\
-         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} 2^{- \frac{m}{2}} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} e^{- \frac{2 \pi y^\prime z}{2^m} i} \ket{y^\prime}_m \\
-         &= 2^{- m} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k - y^\prime \) z}{2^m} i} \ket{y^\prime}_m \\
-         &= 2^{- m} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} 2^m \delta_{[y + k]_{2^{m - 1}}, [y^\prime]_{2^{m - 1}}} \ket{y^\prime}_m \\
-         &= \ket{y + k \mod 2^{m - 1}},
-   \end{align}
-   where $[ \cdot ]_{2^{m - 1}}$ is a remainder class modulo $2^{m - 1}$.
+   \begin{equation}
+      \QFT_m^\dagger \circ \cP \( k \) \circ \QFT_m \ket{y}_m = \ket{y + k \mod 2^{m - 1}}.
+   \end{equation}
 \end{proof}
+
+By \Cref{lemma:quantum_adder} it is immediate that
+\begin{equation}
+   \begin{quantikz}
+      \lstick{$\ket{x}_n$}   & \qw  & \qw                   & \qw & \ctrl{1}                                        & \qw & \ctrl{1} & \qw                 & \qw \rstick{$\ket{x}_n$} \\
+      \lstick{$\ket{y}_m$}   & \qw  & \gate{\QFT}   & \qw & \gate{C_f \cP \( 1 \)}  & \qw & \gate{\ldots} & \gate{\QFT^\dagger} & \qw \rstick{$\ket{y - f \( x \)}_m$}
+   \end{quantikz}
+\end{equation}
+is the desired oracle, where $C_f$ means control by the quantum registers $i_1, i_2, \ldots i_j$.
 
 \bigskip
 
