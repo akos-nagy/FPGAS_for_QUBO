@@ -13,7 +13,7 @@
 
 \usepackage{amsmath,bbm,verbatim,wasysym,nicefrac}
 %mathtools,appendix,soul,ulem,slashed,upgreek
-\usepackage[protrusion=true,babel=true]{microtype}
+\usepackage[protrusion=true, babel=true]{microtype}
 \usepackage[english]{babel}
 \usepackage[widespace]{fourier}
 \usepackage[backrefs]{amsrefs}
@@ -101,8 +101,6 @@
 \def\P{\mathbbm{P}}
 \def\Z{\mathbbm{Z}}
 
-\def\bH{\mathbb{H}}
-
 %%%%%%%%%% CalligraPhics %%%%%%%%%%
 
 \def\cA{\mathcal{A}}
@@ -148,7 +146,6 @@
 \def\Isom{\mathrm{Isom}}
 \def\Lie{\mathrm{Lie}}
 \def\PU{\mathrm{PU}}
-\def\QFT{\mathrm{QFT}}
 \def\rk{\mathrm{rk}}
 \def\Re{\mathrm{Re}}
 \def\Res{\mathrm{Res}}
@@ -166,7 +163,8 @@
 
 %%%%%%%%%% Other symbols (paper specific) %%%%%%%%%%
 
-
+\def\qdict{\textsc{qdict}}
+\def\QFT{\mathrm{QFT}}
 
 %%%%%%%%%% Other formatting %%%%%%%%%%
 
@@ -253,18 +251,18 @@ The first main contribution of the paper is an oracle design for encoding operat
 
 Briefly, the quantum dictionary, corresponding to a function (thought of as a classical dictionary), $F: \dom \( F \) \rightarrow \Z_2^m$, where $\dom \( F \) \subseteq \Z_2^n$, is the following quantum state on $n + m$ qubits:
 \begin{equation}
-   \ket{F} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_m.
+   \ket{\qdict \( F \)} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_m.
 \end{equation}
-Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{f} = \ket{F}$. We handle signs via the ``Two's complement'' convention, in particular, a number is negative exactly when its first digit is $1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
+Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. We handle signs via the ``Two's complement'' convention, in particular, a binary number $x_0 x_1 \ldots x_{m - 1}$ is negative exactly when $x_0 = 1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
 
 We construct these operators in three steps. First, we outline a modified version of the encoding operator given in \cite{gilliam_grover_2021} that is convenient to encode monomials, $x_{i_1} x_{i_2} \cdots x_{i_j}$. Then we show that every binary function can be rewritten in a basis of functions that can be more efficiently encoded then monomials. Finally, we modify the encoding operators of \cite{gilliam_grover_2021} to apply for our new basis.
 
 \medskip
 
-\subsection{Monomial encoder}
-\label{sec:mono}
+\subsection{Polynomial encoder}
+\label{sec:poly}
 
-Let $f (x) = x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $m + n$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_m$ to $\ket{x}_n \ket{f (x)}_m$, for any $x \in \Z_2^n$.
+Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $m + n$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_m$ to $\ket{x}_n \ket{x_I}_m$, for any $x \in \Z_2^n$.
 
 Let us make two definitions: Let $\QFT_m$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{m - 1} \leqslant y < 2^{m - 1}$, we have
 \begin{equation}
@@ -277,7 +275,7 @@ Then
 Now let $\cP_m (k)$ be the following $m$-qubit gate
 \begin{equation}
    \begin{quantikz}
-      \lstick{\ket{z_0}} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$ e^{\frac{2 \pi k z_0 2^{m - 1}}{2^m} i} \ket{z_1}$} \\`'
+      \lstick{\ket{z_0}} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$ e^{\frac{2 \pi k z_0 2^{m - 1}}{2^m} i} \ket{z_1}$} \\
       \vdots \\
       \lstick{\ket{z_j}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$ e^{\frac{2 \pi z_j 2^{m - j - 1}}{2^m}} \ket{z_j}$} \\
       \vdots \\
@@ -313,11 +311,55 @@ Now we can prove a well-known lemma. {\color{red} citation needed}
 By \Cref{lemma:quantum_adder} it is immediate that
 \begin{equation}
    \begin{quantikz}
-      \lstick{$\ket{x}_n$}   & \qw  & \qw                   & \qw & \ctrl{1}                                        & \qw & \ctrl{1} & \qw                 & \qw \rstick{$\ket{x}_n$} \\
-      \lstick{$\ket{y}_m$}   & \qw  & \gate{\QFT}   & \qw & \gate{C_f \cP \( 1 \)}  & \qw & \gate{\ldots} & \gate{\QFT^\dagger} & \qw \rstick{$\ket{y - f \( x \)}_m$}
+      \lstick{$\ket{x}_n$}   & \qw  & \qw             & \qw & \ctrl{1}                & \qw & \qw                    & \qw \rstick{$\ket{x}_n$} \\
+      \lstick{$\ket{0}_m$}   & \qw  & \gate{\QFT_m}   & \qw & \gate{C_I \cP \( 1 \)}  & \qw & \gate{\QFT_m^\dagger}  & \qw \rstick{$\ket{x_I}_m$}
    \end{quantikz}
 \end{equation}
-is the desired oracle, where $C_f$ means control by the quantum registers $i_1, i_2, \ldots i_j$.
+is the desired oracle, where $C_I$ means control by the quantum registers $i_1, i_2, \ldots i_j$.
+
+Finally, to create the full quantum dictionary, $\ket{\qdict \( f \)}$, we need to pre-compose an oracle, call $U$, for which we have
+\begin{equation}
+   U \ket{0}_n = \tfrac{1}{\sqrt{\left| \dom \( f \) \right|}} \sum\limits_{x \in \dom \( f \)} \ket{x}_n.
+\end{equation}
+If $\dom \( f \) = \Z_2^n$, then $U = H^{\otimes n}$.
+\begin{example}
+   Let $n = m = 2$ and $f (x) = x_0 x_1$. Now the encoder oracle takes the form
+   \begin{equation}
+      \begin{quantikz}
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{U}    & \qw & \ctrl{1} \gategroup[4, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$C_I \cP \( 1 \)$}                          & \qw & \ctrl{2}                                   & \qw                    & \qw \rstick[4]{$\ket{\qdict \( f \)}$} \\
+         \lstick{$\ket{0}$}   & \qw  &                & \qw & \ctrl{1}                          & \qw & \ctrl{2}                                   & \qw                    & \qw \\
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{\QFT_2} & \qw & \gate{\textsc{phase} \( \pi \)}   & \qw & \qw                                        & \gate[2]{\QFT_2^\dagger} & \qw \\
+         \lstick{$\ket{0}$}   & \qw  &                & \qw & \qw                               & \qw & \gate{\textsc{phase} \( \nicefrac{\pi}{2} \)}   &                        & \qw
+      \end{quantikz}
+   \end{equation}
+\end{example}
+
+\smallskip
+
+For the rest of the paper we assume that $\dom \( f \) = \Z_2^n$ and thus $U = H^{\otimes n}$. Furthermore, we note that $\QFT_m \ket{0}_m = H^{\otimes m} \ket{0}_m$ and thus we replace $\QFT_m$ with $H^{\otimes m}$ in the oracle, as the latter has depth $1$ and uses only single-qubit gates.
+
+Let $\P_n$ be the power set of $\{ 0, 1, \ldots, n - 1\}$. Now, for an arbitrary polynomial,
+\begin{equation}
+   f (x) = \sum\limits_{I \in \P_n} A_I x^I,
+\end{equation}
+and $m \in \Z$ large enough so that all values of $f$ can be digitized on $m$ bits, we have that
+\begin{equation}
+   \begin{quantikz}
+      \lstick{$\ket{0}_n$}   & \qw  & \gate[2]{H^{\otimes (n + m)}}        & \qw & \ctrl{1} \gategroup[2, steps=1, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{one for each $I \in \P_n$ with $A_I \neq 0$}                   & \qw \ \ldots \ & \qw & \qw                   & \qw \rstick[2]{$\ket{\qdict \( f \)}$} \\
+      \lstick{$\ket{0}_m$}   & \qw  & & \qw & \gate{C_I \cP \( A_I \)}   & \qw \ \ldots \ & \qw & \gate{\QFT_m^\dagger} & \qw
+   \end{quantikz}
+\end{equation}
+
+\medskip
+
+\subsection{New basis for polynomials}
+\label{sec:xor_basis}
+
+We motivate the idea of the new basis by outlining it in the $n = 2$ case.
+
+\smallskip
+
+Note first that, since $x_i^2 = x_i$ for binary variables, we have that $x_0 x_1 = \tfrac{1}{2} \( x_0 + x_1 - \( x_0 - x_1 \)^2 \)$. Now $\( x_0 - x_1 \)^2$ is also a binary variable, in fact, $\( x_0 - x_1 \)^2 = x_0 \mathrm{XOR} x_1$. Now let $f$ be a generic polynomial, $f (x) = a_1 x_1$
 
 \bigskip
 
@@ -371,67 +413,6 @@ Given a function as in \cref{eq:QUBO}, let us pick $m \gg \log_2 \( M \)$ (in fa
 Note that the $\( n + 1 \)^{\mathrm{th}}$ register of $U_f \ket{x}_n \ket{y}_m$ is $\ket{1}$ exactly when $y < f (x)$.
 
 \medskip
-
-\subsection{Oracle design:}
-
-Let $\cP \( \theta \)$ be the following $m$-qubit gate
-\begin{equation}
-   \begin{quantikz}
-      \lstick{\ket{y_1}} \qw  &  \gate{P \( 2^{m - 1} \theta \)} & \qw \rstick{$ e^{i \theta y_1 2^{m - 1}} \ket{y_1}$} \\
-      \vdots \\
-      \lstick{\ket{y_j}} \qw  &  \gate{P \( 2^{m - j} \theta \)} & \qw \rstick{$ e^{i \theta y_j 2^{m - j}} \ket{y_j}$} \\
-      \vdots \\
-      \lstick{\ket{y_m}} \qw  &  \gate{P \( \theta \)} & \qw \rstick{$ e^{i \theta y_m} \ket{y_m}$}
-   \end{quantikz}   
-\end{equation}
-Thus $\cP \( \theta \) \ket{y}_m = e^{i \theta y} \ket{y}_m$. Note that
-\begin{equation}
-   \begin{quantikz}
-      \lstick{$\ket{y}_m$} \qw  &  \gate{\QFT} &  \gate{\cP \( k \tfrac{2 \pi}{2^m} \)}  & \gate{\QFT^\dagger} & \qw \rstick{$\ket{z + k}_m$}
-   \end{quantikz}   
-\end{equation}
-Thus if $f (x) = \sum_{i, j} Q_{i, j} x_i x_j + c$, then we need to add:
-\begin{enumerate}
-
-   \item $- Q_{i, j}$, exactly when $x_i = x_j = 1$. This amounts to the addition of a $\mathrm{QFT}^\dagger \circ \cP \( - Q_{i, j} \tfrac{2 \pi}{2^m} \) \circ \mathrm{QFT}$ gate, controlled by the $i^{\mathrm{th}}$ and $j^{\mathrm{th}}$ register of $\ket{x}_n$,
-
-   \item $- c$, independent of $\ket{x}$. This amounts to the addition of a $\mathrm{QFT}^\dagger \circ \cP \( - c \tfrac{2 \pi}{2^m} \) \circ \mathrm{QFT}$ gate.
-
-\end{enumerate}
-
-However, the following observation further simplifies the circuit. Let $q_i = \sum_{j = 1}^n Q_{i, j}$ and for $i < j$ let $S^{(i, j)}$ be the $n$-by-$n$ matrix defined via
-\begin{equation}
-   S_{k, l}^{(i, j)} = \left\{ \begin{array}{ll} 1, & \mbox{if } k = l \in \{ i, j \}, \\ - 1, & \mbox{if } k = i, l = j, \mbox{ or } k = j, l = j, \\ 0, & \mbox{otherwise.} \end{array} \right.
-\end{equation}
-Then $Q$ can be written as
-\begin{equation}
-   Q = \diag \( q_1, q_2, \ldots, q_n \) + \sum\limits_{i = 1}^{n - 1} \sum\limits_{j = i + 1}^n Q_{i, j} S^{(i, j)}.
-\end{equation}
-
-Since $\QFT$ is unitary, only the first one is needed; similarly, only the last $\QFT^\dagger$ is need. Hence $U_f$ is given by:
-\begin{equation}
-   \begin{quantikz}
-      \lstick{$\ket{x}_n$}   & \qw  & \qw                   & \qw & \ctrl{1}                                        & \qw & \ctrl{1} & \qw                 & \qw \rstick{$\ket{x}_n$} \\
-      \lstick{$\ket{y}_m$}   & \qw  & \gate{\QFT}   & \qw & \gate{\cP \( - Q_{1, 1} \tfrac{2 \pi}{2^m} \)}  & \qw & \gate{\ldots} & \gate{\QFT^\dagger} & \qw \rstick{$\ket{y - f \( x \)}_m$}
-   \end{quantikz}
-\end{equation}
-
-\begin{example}
-   \label{example:small_graph}
-   Let $n = 4$ and $f (x) = 3 x_1^2 + x_2^2 + x_3^2 + x_4^2 - 2 \( x_1 x_2 + x_1 x_3 + x_1 x_4 \)$. This is equivalent to \cref{eq:QUBO}, with
-   \begin{equation}
-      Q_{1, 2} = Q_{1, 2} = Q_{1, 4} = - 1, \quad b_1 = 3, \quad b_2 = b_3 = b_4 = 1,
-   \end{equation}
-   and all other coefficient zero. Furthermore, $m = 3$ works.
-\end{example}
-
-\begin{remark}
-   When $f$ has symmetries, the above picture can be simplified. For example, in the case of MaxCut, we can assume that, say the last vertex is always in the $0$-components, thus that qubit register can be eliminated.
-\end{remark}
-
-Note that the adjusted cost, $y - f (x)$, is encoded, which can later be used to implements the unitary operators $\exp \( i \gamma H_f \)$ without Trotterization as follow: let $\gamma \in \rl$ and let us omit the ancilla qubit. Then $\exp \( i \gamma H_f \) \ket{x}_n = e^{i \gamma \( y - f (x) \)} \ket{x}$ can be prepared via a $\cP \( \gamma \tfrac{2 \pi}{2^m} \)$-gate.
-
-\bigskip
 
 \section{Application to Grover fixed point search and state preparation}
 
