@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  29 AUG 2023 17:09
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  30 AUG 2023 15:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1315,8 +1315,24 @@ LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [3]
-[4]
-Overfull \hbox (5.8211pt too wide) in paragraph at lines 405--406
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 350.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 350.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 350.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 350.
+
+Underfull \vbox (badness 1400) has occurred while \output is active []
+
+ [4]
+Overfull \hbox (20.81953pt too wide) detected at line 383
+[][][][]
+ []
+
+[5]
+Overfull \hbox (5.8211pt too wide) in paragraph at lines 428--429
 []\T1/futs/m/n/12 An el-e-ment $\FML/futmi/m/it/12 x \FMS/futm/m/n/12 ^^81 [][]
 [][] 2 f\T1/futs/m/n/12 0\FML/futmi/m/it/12 ; \T1/futs/m/n/12 1\FMS/futm/m/n/12
  g[]$ \T1/futs/m/n/12 is also re-garded as a bi-nary num-ber via $\FML/futmi/m/
@@ -1325,7 +1341,7 @@ it/12 x \FMS/futm/m/n/12 ^^X [] []^^81
 
 Missing character: There is no ’ ("2019) in font futr8t!
 
-Overfull \hbox (6.01624pt too wide) in paragraph at lines 419--420
+Overfull \hbox (6.01624pt too wide) in paragraph at lines 442--443
 []\T1/futs/m/n/12 Fix $\FML/futmi/m/it/12 ^^N \FMS/futm/m/n/12 2 [][][][]$ \T1/
 futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
  ^^U []\FMS/futm/m/n/12 ^^81 []$\T1/futs/m/n/12 , where $\FML/futmi/m/it/12 C[]
@@ -1333,9 +1349,9 @@ futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
 2 l []\FMS/futm/m/n/12 ^^81 [][]$\T1/futs/m/n/12 .
  []
 
-[5] (./Grover_FPS_for_QUBO.bbl)
+[6] (./Grover_FPS_for_QUBO.bbl)
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-49.
+72.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1346,18 +1362,18 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [6]
-[7] (./Grover_FPS_for_QUBO.aux)
+ [7]
+[8] (./Grover_FPS_for_QUBO.aux)
 Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
 (rerunfilecheck)             Checksum: 5A92BCA560AC23C076318FAC7DEFA08A;2061.
  ) 
 Here is how much of TeX's memory you used:
- 34137 strings out of 476683
- 667476 string characters out of 5809790
- 1909018 words of memory out of 5000000
- 53624 multiletter control sequences out of 15000+600000
- 616295 words of font info for 108 fonts, out of 8000000 for 9000
+ 34816 strings out of 476683
+ 684415 string characters out of 5809790
+ 1912018 words of memory out of 5000000
+ 54303 multiletter control sequences out of 15000+600000
+ 627308 words of font info for 123 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
- 115i,23n,118p,1187b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 115i,23n,118p,1187b,1332s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Grover_FPS_for_QUBO.pdf (7 pages).
+Output written on Grover_FPS_for_QUBO.pdf (8 pages).

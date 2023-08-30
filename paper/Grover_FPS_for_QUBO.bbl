@@ -41,6 +41,14 @@
        pages={137\ndash 147},
 }
 
+\bib{nielsen_quantum_2010}{book}{
+      author={{Nielsen, Michael A. and Chuang, Isaac L.}},
+       title={{Quantum Computation and Quantum Information: 10th Anniversary
+  Edition}},
+   publisher={Cambridge University Press},
+        date={2010},
+}
+
 \bib{yoder_fixed-point_2014}{article}{
       author={Yoder, Theodore~J.},
       author={Low, Guang~Hao},

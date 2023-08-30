@@ -249,11 +249,11 @@ Many interesting Binary Optimization problems, such as finding maximal graph cut
 
 The first main contribution of the paper is an oracle design for encoding operators of (arbitrary) \emph{quantum dictionaries}, as introduced in \cite{gilliam_foundational_2021}. While such designs have already existed, cf. \cite{gilliam_grover_2021}, ours has improved circuit depth, gate count, and CNOT count. Such oracles have applications, for example, in Grover type algorithms and threshold-QAOA \cite{golden_threshold_2021}.
 
-Briefly, the quantum dictionary, corresponding to a function (thought of as a classical dictionary), $F: \dom \( F \) \rightarrow \Z_2^m$, where $\dom \( F \) \subseteq \Z_2^n$, is the following quantum state on $n + m$ qubits:
+Briefly, the quantum dictionary, corresponding to a function (thought of as a classical dictionary), $F: \dom \( F \) \rightarrow \Z_2^d$, where $\dom \( F \) \subseteq \Z_2^n$, is the following quantum state on $n + d$ qubits:
 \begin{equation}
-   \ket{\qdict \( F \)} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_m.
+   \ket{\qdict \( F \)} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_d.
 \end{equation}
-Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. We handle signs via the ``Two's complement'' convention, in particular, a binary number $x_0 x_1 \ldots x_{m - 1}$ is negative exactly when $x_0 = 1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
+Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. We handle signs via the ``Two's complement'' convention, in particular, a binary number $y_0 y_1 \ldots y_{d - 1}$ is negative exactly when $y_0 = 1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
 
 We construct these operators in three steps. First, we outline a modified version of the encoding operator given in \cite{gilliam_grover_2021} that is convenient to encode monomials, $x_{i_1} x_{i_2} \cdots x_{i_j}$. Then we show that every binary function can be rewritten in a basis of functions that can be more efficiently encoded then monomials. Finally, we modify the encoding operators of \cite{gilliam_grover_2021} to apply for our new basis.
 
@@ -262,49 +262,49 @@ We construct these operators in three steps. First, we outline a modified versio
 \subsection{Polynomial encoder}
 \label{sec:poly}
 
-Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $m + n$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_m$ to $\ket{x}_n \ket{x_I}_m$, for any $x \in \Z_2^n$.
+Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $n + d$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_d$ to $\ket{x}_n \ket{x_I}_d$, for any $x \in \Z_2^n$.
 
-Let us make two definitions: Let $\QFT_m$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{m - 1} \leqslant y < 2^{m - 1}$, we have
+Let us make two definitions: Let $\QFT_d$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{d - 1} \leqslant y < 2^{d - 1}$, we have
 \begin{equation}
-   \QFT_m \ket{y}_m = 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \ket{z}_m.
+   \QFT_d \ket{y}_d = 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d.
 \end{equation}
 Then
 \begin{equation}
-   \QFT_m^\dagger \ket{z}_m = 2^{- \frac{m}{2}} \sum\limits_{y^\prime = - 2^{m - 1}}^{2^{m - 1} - 1} e^{- \frac{2 \pi y^\prime z}{2^m} i} \ket{y^\prime}_m.
+   \QFT_d^\dagger \ket{z}_d = 2^{- \frac{d}{2}} \sum\limits_{y^\prime = - 2^{d - 1}}^{2^{d - 1} - 1} e^{- \frac{2 \pi y^\prime z}{2^d} i} \ket{y^\prime}_d.
 \end{equation}
-Now let $\cP_m (k)$ be the following $m$-qubit gate
+Now let $\cP_d (k)$ be the following $m$-qubit gate
 \begin{equation}
    \begin{quantikz}
-      \lstick{\ket{z_0}} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$ e^{\frac{2 \pi k z_0 2^{m - 1}}{2^m} i} \ket{z_1}$} \\
+      \lstick{\ket{z_0}} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$ e^{\frac{2 \pi k z_0 2^{d - 1}}{2^d} i} \ket{z_1}$} \\
       \vdots \\
-      \lstick{\ket{z_j}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$ e^{\frac{2 \pi z_j 2^{m - j - 1}}{2^m}} \ket{z_j}$} \\
+      \lstick{\ket{z_j}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$ e^{\frac{2 \pi z_j 2^{m - j - 1}}{2^d}} \ket{z_j}$} \\
       \vdots \\
-      \lstick{\ket{z_{m - 1}}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^m} \)} & \qw \rstick{$ e^{\frac{2 \pi k z_{m - 1}}{2^m} i} \ket{z_m}$}
+      \lstick{\ket{z_{m - 1}}} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^d} \)} & \qw \rstick{$ e^{\frac{2 \pi k z_{m - 1}}{2^d} i} \ket{z_d}$}
    \end{quantikz}   
 \end{equation}
-Thus $\cP_m \( k \) \ket{z}_m = e^{\frac{2 \pi k z}{2^m} i} \ket{z}_m$.
+Thus $\cP_d \( k \) \ket{z}_d = e^{\frac{2 \pi k z}{2^d} i} \ket{z}_d$.
 
 Now we can prove a well-known lemma. {\color{red} citation needed}
 
 \begin{lemma}
    \label{lemma:quantum_adder}
-   For any $- 2^{m - 1} \leqslant y < 2^{m - 1}$ and $k \in \Z$ we have
+   For any $- 2^{d - 1} \leqslant y < 2^{d - 1}$ and $k \in \Z$ we have
    \begin{equation}
-      \QFT_m^\dagger \circ \cP_m \( k \) \circ \QFT_m \ket{y}_m = \ket{y + k \mod 2^{m - 1}}.
+      \QFT_d^\dagger \circ \cP_d \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k \mod 2^{d - 1}}.
    \end{equation}
 \end{lemma}
 
 \begin{proof}
    First we compute
    \begin{align}
-      \cP_m \( k \) \circ \QFT_m \ket{y}_m  &= \cP \( k \) \( 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \ket{z}_m \) \\
-         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi y z}{2^m} i} \cP \( k \) \ket{z}_m \\
-         &= 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{m - 1}}^{2^{m - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^m} i} \ket{z}_m \\
-         &= \QFT_m \ket{y + k \mod 2^{m - 1}},
+      \cP_d \( k \) \circ \QFT_d \ket{y}_d  &= \cP \( k \) \( 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d \) \\
+         &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \cP \( k \) \ket{z}_d \\
+         &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^d} i} \ket{z}_d \\
+         &= \QFT_d \ket{y + k \mod 2^{d - 1}},
    \end{align}
    hence
    \begin{equation}
-      \QFT_m^\dagger \circ \cP \( k \) \circ \QFT_m \ket{y}_m = \ket{y + k \mod 2^{m - 1}}.
+      \QFT_d^\dagger \circ \cP \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k \mod 2^{d - 1}}.
    \end{equation}
 \end{proof}
 
@@ -312,7 +312,7 @@ By \Cref{lemma:quantum_adder} it is immediate that
 \begin{equation}
    \begin{quantikz}
       \lstick{$\ket{x}_n$}   & \qw  & \qw             & \qw & \ctrl{1}                & \qw & \qw                    & \qw \rstick{$\ket{x}_n$} \\
-      \lstick{$\ket{0}_m$}   & \qw  & \gate{\QFT_m}   & \qw & \gate{C_I \cP \( 1 \)}  & \qw & \gate{\QFT_m^\dagger}  & \qw \rstick{$\ket{x_I}_m$}
+      \lstick{$\ket{0}_d$}   & \qw  & \gate{\QFT_d}   & \qw & \gate{C_I \cP \( 1 \)}  & \qw & \gate{\QFT_d^\dagger}  & \qw \rstick{$\ket{x_I}_d$}
    \end{quantikz}
 \end{equation}
 is the desired oracle, where $C_I$ means control by the quantum registers $i_1, i_2, \ldots i_j$.
@@ -323,32 +323,33 @@ Finally, to create the full quantum dictionary, $\ket{\qdict \( f \)}$, we need 
 \end{equation}
 If $\dom \( f \) = \Z_2^n$, then $U = H^{\otimes n}$.
 \begin{example}
-   Let $n = m = 2$ and $f (x) = x_0 x_1$. Now the encoder oracle takes the form
+   Let $n = d = 2$ and $f (x) = x_0 x_1$. Now the encoder oracle takes the form
    \begin{equation}
       \begin{quantikz}
-         \lstick{$\ket{0}$}   & \qw  & \gate[2]{U}    & \qw & \ctrl{1} \gategroup[4, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$C_I \cP \( 1 \)$}                          & \qw & \ctrl{2}                                   & \qw                    & \qw \rstick[4]{$\ket{\qdict \( f \)}$} \\
-         \lstick{$\ket{0}$}   & \qw  &                & \qw & \ctrl{1}                          & \qw & \ctrl{2}                                   & \qw                    & \qw \\
-         \lstick{$\ket{0}$}   & \qw  & \gate[2]{\QFT_2} & \qw & \gate{\textsc{phase} \( \pi \)}   & \qw & \qw                                        & \gate[2]{\QFT_2^\dagger} & \qw \\
-         \lstick{$\ket{0}$}   & \qw  &                & \qw & \qw                               & \qw & \gate{\textsc{phase} \( \nicefrac{\pi}{2} \)}   &                        & \qw
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{U}       & \qw & \ctrl{1}    & \qw & \ctrl{1}                                      & \qw & \qw \rstick[4]{$\ket{\qdict \( f \)}$} \\
+         \lstick{$\ket{0}$}   & \qw  &                   & \qw & \ctrl{1}                                                                                                                                                                       & \qw & \ctrl{2}                                      & \qw                      & \qw \\
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{\QFT_2}  & \qw & \gate{\textsc{phase} \( \pi \)} \gategroup[2, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$\cP \( 1 \)$}                                                                                                                                                & \qw & \qw                                           & \gate[2]{\QFT_2^\dagger} & \qw \\
+         \lstick{$\ket{0}$}   & \qw  &                   & \qw & \qw                                                                                                                                                                            & \qw & \gate{\textsc{phase} \( \nicefrac{\pi}{2} \)} &                          & \qw
       \end{quantikz}
    \end{equation}
 \end{example}
 
 \smallskip
 
-For the rest of the paper we assume that $\dom \( f \) = \Z_2^n$ and thus $U = H^{\otimes n}$. Furthermore, we note that $\QFT_m \ket{0}_m = H^{\otimes m} \ket{0}_m$ and thus we replace $\QFT_m$ with $H^{\otimes m}$ in the oracle, as the latter has depth $1$ and uses only single-qubit gates.
+For the rest of the paper we assume that $\dom \( f \) = \Z_2^n$ and thus $U = H^{\otimes n}$. Furthermore, we note that $\QFT_d \ket{0}_d = H^{\otimes m} \ket{0}_d$ and thus we replace $\QFT_d$ with $H^{\otimes d}$ in the oracle, as the latter has depth $1$ and uses only single-qubit gates.
 
 Let $\P_n$ be the power set of $\{ 0, 1, \ldots, n - 1\}$. Now, for an arbitrary polynomial,
 \begin{equation}
    f (x) = \sum\limits_{I \in \P_n} A_I x^I,
 \end{equation}
-and $m \in \Z$ large enough so that all values of $f$ can be digitized on $m$ bits, we have that
+and $d \in \N_+$ large enough so that all values of $f$ can be digitized on $m$ bits, we have that
 \begin{equation}
    \begin{quantikz}
-      \lstick{$\ket{0}_n$}   & \qw  & \gate[2]{H^{\otimes (n + m)}}        & \qw & \ctrl{1} \gategroup[2, steps=1, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{one for each $I \in \P_n$ with $A_I \neq 0$}                   & \qw \ \ldots \ & \qw & \qw                   & \qw \rstick[2]{$\ket{\qdict \( f \)}$} \\
-      \lstick{$\ket{0}_m$}   & \qw  & & \qw & \gate{C_I \cP \( A_I \)}   & \qw \ \ldots \ & \qw & \gate{\QFT_m^\dagger} & \qw
+      \lstick{$\ket{0}_n$}   & \qw              & \gate[2]{H^{\otimes (n + d)}}        & \qw & \ctrl{1} \gategroup[2, steps=1, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{\tiny{one for each $I = \left\{ i_1, i_2, \ldots, i_{|I|} \right\} \in \P_n$, controlled by registers $x_{i_1}, x_{i_2}, \ldots, x_{i_{|I|}}$}}                    & \qw \ \ldots \ & \qw & \qw                   & \qw \rstick[2]{$\ket{\qdict \( f \)}$} \\
+      \lstick{$\ket{0}_d$}   & \qw  & & \qw & \gate{\cP \( A_I \)}   & \qw \ \ldots \ & \qw & \gate{\QFT_d^\dagger} & \qw
    \end{quantikz}
 \end{equation}
+
 
 \medskip
 
@@ -359,7 +360,29 @@ We motivate the idea of the new basis by outlining it in the $n = 2$ case.
 
 \smallskip
 
-Note first that, since $x_i^2 = x_i$ for binary variables, we have that $x_0 x_1 = \tfrac{1}{2} \( x_0 + x_1 - \( x_0 - x_1 \)^2 \)$. Now $\( x_0 - x_1 \)^2$ is also a binary variable, in fact, $\( x_0 - x_1 \)^2 = x_0 \mathrm{XOR} x_1$. Now let $f$ be a generic polynomial, $f (x) = a_1 x_1$
+Note first that, since $x_i^2 = x_i$ for binary variables, we have that $x_0 x_1 = \tfrac{1}{2} \( x_0 + x_1 - \( x_0 - x_1 \)^2 \)$. Now $\( x_0 - x_1 \)^2$ is also a binary variable, in fact, $\( x_0 - x_1 \)^2 = x_0 \textnormal{ XOR } x_1$. Now let $f$ be a generic polynomial, $f \( x_0, x_1 \) = A_\emptyset + A_0 x_0 + A_1 x_1 + A_{01} x_0 x_1$. Since we are interested in finding the maximum of $f$, we can assume, without any loss of generality, that $f (0, 0) = A_\emptyset = 0$. By generic we mean that $0 \notin \{ A_0, A_1, A_{01} \}$. Using $d$ digits, we need $2 d$ CNOT gates for each linear terms and $6 d$ CNOT gates for the quadratic term, thus a total of $10 d$ CNOT gates (not counting the CNOT gates in $\QFT_d^\dagger$). However, we can rewrite $f$ as
+\begin{align}
+   f \( x_0, x_1 \)  &= A_0 x_0 + A_1 x_1 + A_{01} x_0 x_1 \\
+                     &= \( A_0 + \tfrac{1}{2} A_{01} \) x_0 + \( A_1 + \tfrac{1}{2} A_{01} \) x_1 - \tfrac{1}{2} A_{01} \( x_0 - x_1 \)^2,
+\end{align}
+and note that the last term can be implemented as
+\begin{equation}
+   \begin{quantikz}
+      \lstick{$\ket{x_0}$} & \qw & \ctrl{1}   & \qw                  & \ctrl{1}              & \qw \rstick{$\ket{x_0}$} \\
+      \lstick{$\ket{x_1}$} & \qw & \targ{}    & \ctrl{1}             & \targ{}               & \qw \rstick{$\ket{x_1}$} \\
+      \lstick{$\ket{0}_d$} & \qw & \qw        & \gate{\cP \( 1 \)}   & \gate{\QFT_d^\dagger} & \qw \rstick{$\ket{\( x_0 - x_1 \)^2}_d$}
+   \end{quantikz}
+\end{equation}
+which now has CNOT count only $2 + 2d$. Thus the whole oracle (for arbitrary $f$) can be realized as
+\begin{equation}
+   \begin{quantikz}
+      \lstick{$\ket{x_0}$} & \qw & \gate[3]{H^{\otimes (2 + d)}}  & \ctrl{2}                                   & \qw                                        & \ctrl{1}   & \qw                                    & \ctrl{1}              & \qw \rstick{$\ket{x_0}$} \\
+      \lstick{$\ket{x_1}$} & \qw &                                & \qw                                        & \ctrl{1}                                   & \targ{}    & \ctrl{1}                               & \targ{}               & \qw \rstick{$\ket{x_1}$} \\
+      \lstick{$\ket{0}_d$} & \qw &                                & \gate{\cP \( A_0 + \tfrac{A_{01}}{2} \)}   & \gate{\cP \( A_1 + \tfrac{A_{01}}{2} \)}   & \qw        & \gate{\cP \( - \tfrac{A_{01}}{2} \)}   & \gate{\QFT_d^\dagger} & \qw \rstick{$\ket{\( x_0 - x_1 \)^2}_d$}
+   \end{quantikz}
+\end{equation}
+making the new CNOT count for the whole oracle to be (at most) $2 + 6d$, again, not counting the CNOT gates in $\QFT_d^\dagger$. In fact, the only time the two counts equal is when $A_0 = A_1 = 0$, $A_{01} \neq 0$, and $d = 1$, that is, when middle of the oracle is a single doubly-controlled phase gate, in which case this construction recovers the well-known one; cf \cite{nielsen_quantum_2010}*{Figure~4.8.}. 
+
 
 \bigskip
 
@@ -408,15 +431,15 @@ An element $x = \( x_1, x_2, \ldots, x_n \) \in \{ 0, 1 \}^n$ is also regarded a
 \end{equation}
 Given a function as in \cref{eq:QUBO}, let us pick $m \gg \log_2 \( M \)$ (in fact, $m = \left\lceil \log_2 \( \tr \( Q \) \) \right\rceil + 1$ works for our purposes). We use the binary 2’s complement convention when digitizing integers and we with that in mind, we construct a oracle on $\( n + m \)$-qubits, $U_f$, so that
 \begin{equation}
-   U_f \ket{x}_n \ket{y}_m = \ket{x}_n \ket{y - f (x)}_m.
+   U_f \ket{x}_n \ket{y}_d = \ket{x}_n \ket{y - f (x)}_d.
 \end{equation}
-Note that the $\( n + 1 \)^{\mathrm{th}}$ register of $U_f \ket{x}_n \ket{y}_m$ is $\ket{1}$ exactly when $y < f (x)$.
+Note that the $\( n + 1 \)^{\mathrm{th}}$ register of $U_f \ket{x}_n \ket{y}_d$ is $\ket{1}$ exactly when $y < f (x)$.
 
 \medskip
 
 \section{Application to Grover fixed point search and state preparation}
 
-Fix $\delta \in \( 0, 1 \)$ and $y$. Let $\lambda \eqdef \tfrac{\left| C_y \right|}{2^n}$, where $C_y \eqdef \left\{ x \in \{ 0, 1 \}^n \middle| f (x) \geqslant y \right\}$. Finally let $l \eqdef \left\lceil \tfrac{\log_2 \( \tfrac{2}{\delta} \)}{2 \sqrt{\lambda}} - \tfrac{1}{2} \right\rceil$. Then, following \cite{yoder_fixed-point_2014}, we can construct a Quantum circuit (using $U_f$ from the previous section), that results in a state $S_l \ket{0}_n \ket{y}_m$ with the following significance: When the first $n$ qubits are measured in the computational basis, then
+Fix $\delta \in \( 0, 1 \)$ and $y$. Let $\lambda \eqdef \tfrac{\left| C_y \right|}{2^n}$, where $C_y \eqdef \left\{ x \in \{ 0, 1 \}^n \middle| f (x) \geqslant y \right\}$. Finally let $l \eqdef \left\lceil \tfrac{\log_2 \( \tfrac{2}{\delta} \)}{2 \sqrt{\lambda}} - \tfrac{1}{2} \right\rceil$. Then, following \cite{yoder_fixed-point_2014}, we can construct a Quantum circuit (using $U_f$ from the previous section), that results in a state $S_l \ket{0}_n \ket{y}_d$ with the following significance: When the first $n$ qubits are measured in the computational basis, then
 \begin{equation}
    P \( x \in C_y \) = \sum_{x \in C_y} \left| \bra{x} S_l \ket{0} \right|^2 \geqslant 1 - \delta^2.
 \end{equation}
