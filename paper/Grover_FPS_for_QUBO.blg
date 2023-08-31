@@ -8,7 +8,7 @@ Reallocated singl_function (elt_size=8) to 100 items from 50.
 Database file #1: references.bib
 You've used 5 entries,
             1497 wiz_defined-function locations,
-            436 strings with 3730 characters,
+            435 strings with 3729 characters,
 and the built_in function-call counts, 4136 in all, are:
 = -- 142
 > -- 374
