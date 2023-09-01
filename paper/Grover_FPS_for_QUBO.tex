@@ -173,9 +173,6 @@
 \keywords{Grover Fixed-point Search, Binary Optimization}
 %\subjclass[2020]{}
 
-\author{Atithi Acharya}
-\address[Atithi Acharya]{}
-
 \author{\'Akos Nagy}
 \address[\'Akos Nagy]{Department of Mathematics, University of California, Santa Barbara}
 \urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
@@ -186,6 +183,12 @@
 
 \author{Cindy Zhang}
 \address[Cindy Zhang]{}
+
+\author{Atithi Acharya}
+\address[Atithi Acharya]{}
+
+\author{Alex Khan}
+\address[Alex Khan]{}
 
 \hypersetup{
    unicode        = true,
@@ -336,9 +339,9 @@ If $\dom \( f \) = \Z_2^n$, then $U = H^{\otimes n}$.
 
 \smallskip
 
-For the rest of the paper we assume that $\dom \( f \) = \Z_2^n$ and thus $U = H^{\otimes n}$. Furthermore, we note that $\QFT_d \ket{0}_d = H^{\otimes m} \ket{0}_d$ and thus we replace $\QFT_d$ with $H^{\otimes d}$ in the oracle, as the latter has depth $1$ and uses only single-qubit gates.
+For the rest of the paper we assume that $\dom \( f \) = \Z_2^n$ and use $U = H^{\otimes n}$. Furthermore, since $\QFT_d \ket{0}_d = H^{\otimes m} \ket{0}_d$, we can replace $\QFT_d$ with $H^{\otimes d}$ in the oracle, as the latter has depth $1$ and uses only single-qubit gates.
 
-Let $\P_n$ be the power set of $\{ 0, 1, \ldots, n - 1\}$. Now, for an arbitrary polynomial,
+Let $\P_n$ be the power set of $\{ 0, 1, \ldots, n - 1 \}$. Now, for an arbitrary polynomial,
 \begin{equation}
    f (x) = \sum\limits_{I \in \P_n} A_I x^I,
 \end{equation}
