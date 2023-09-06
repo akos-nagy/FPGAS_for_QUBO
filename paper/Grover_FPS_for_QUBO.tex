@@ -238,32 +238,32 @@
 
 \bigskip
 
-\section{(Polynomial Unconstrained) Binary Optimization}
-\label{sec:qubos}
+\section{(Polynomial Unconstrained) Binary Optimization and Quantum Dictionaries}
+\label{sec:qubos_and_qdicts}
 
 For the rest of the paper, $\Z_2^n$ denotes the space of length-$n$ bitstrings. Given a function $f : \Z_2^n \rightarrow \rl$, the associated (Unconstrained) Binary Optimization problem is the task of finding an element $x \in \Z_2^n$ such that $f (x)$ is maximal. Note that every binary function is polynomial, which can be seen by simple dimension count.
 
-Many interesting Binary Optimization problems, such as finding maximal graph cuts or the Max $2$-SAT problems are quadratic, and most of the contemporary research centers around Quadratic Unconstrained  Binary Optimization (QUBO) problems. Hence, while our results and circuit designs apply to any binary functions, we use QUBO problems as examples. Furthermore, dealing with higher degree problems require more complicated circuits which makes them more prone to noise (and thus are less NISQ-y).
+Many interesting Binary Optimization problems, such as finding maximal graph cuts or the Max $2$-SAT problems are quadratic, and most of the contemporary research centers around Quadratic Unconstrained  Binary Optimization (QUBO) problems.
 
 \medskip
 
-\subsection{Quantum Dictionaries}
-\label{sec:qdicts}
-
-The first main contribution of the paper is an oracle design for encoding operators of (arbitrary) \emph{quantum dictionaries}, as introduced in \cite{gilliam_foundational_2021}. While such designs have already existed, cf. \cite{gilliam_grover_2021}, ours has improved circuit depth, gate count, and CNOT count. Such oracles have applications, for example, in Grover type algorithms and threshold-QAOA \cite{golden_threshold_2021}.
+The first main contribution of the paper is an oracle design for QUBO problems. More concretely, we construct encoding operators of \emph{quantum dictionaries}, as introduced in \cite{gilliam_foundational_2021}. Such oracles have applications, for example, in Grover type algorithms and threshold QAOA \cite{golden_threshold_2021}. While such designs have already existed, cf. \cite{gilliam_grover_2021}, ours has better circuit depth, gate count, and CNOT count. Thus, they are simultaneously faster and more noise-resistant.
 
 Briefly, the quantum dictionary, corresponding to a function (thought of as a classical dictionary), $F: \dom \( F \) \rightarrow \Z_2^d$, where $\dom \( F \) \subseteq \Z_2^n$, is the following quantum state on $n + d$ qubits:
 \begin{equation}
    \ket{\qdict \( F \)} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_d.
 \end{equation}
-Note that an integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. We handle signs via the ``Two's complement'' convention, in particular, a binary number $y_0 y_1 \ldots y_{d - 1}$ is negative exactly when $y_0 = 1$. In fact, every quantum dictionary can be realized in such a way. Since rational-valued functions can be handled similarly and real-valued functions can be approximated to arbitrary precision by rational ones, this construction can be used to encode (approximate) values of of arbitrary binary functions which, in \Cref{sec:grover_for_qubo}, we use to give a concrete implementation of the Grover Fixed-point search for QUBO problems.
 
-We construct these operators in three steps. First, we outline a modified version of the encoding operator given in \cite{gilliam_grover_2021} that is convenient to encode monomials, $x_{i_1} x_{i_2} \cdots x_{i_j}$. Then we show that every binary function can be rewritten in a basis of functions that can be more efficiently encoded then monomials. Finally, we modify the encoding operators of \cite{gilliam_grover_2021} to apply for our new basis.
+An integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. Let us handle signs via the ``Two's complement'' convention, in particular, a binary number $y_0 y_1 \ldots y_{d - 1}$ is negative exactly when $y_0 = 1$. In fact, every quantum dictionary can be realized in this a way.
+
+\smallskip
+
+We construct the above-mentioned encoding oracles in two steps. First, we outline a modified version of the encoding operator given in \cite{gilliam_grover_2021} that is convenient to encode quadratic polynomials. Then we show that quadratic polynomial can be expressed in a basis of functions that can be more efficiently encoded.
 
 \medskip
 
-\subsection{Polynomial encoder}
-\label{sec:poly}
+\subsection{quadratic encoder}
+\label{sec:quad}
 
 Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $n + d$ registers. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_d$ to $\ket{x}_n \ket{x_I}_d$, for any $x \in \Z_2^n$.
 
