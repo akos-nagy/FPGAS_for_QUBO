@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  1 SEP 2023 08:41
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  13 SEP 2023 16:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -467,6 +467,10 @@ Package: nicefrac 1998/08/04 v0.9b Nice fractions
 \L@UnitsRaiseTextstyle=\skip62
 \L@UnitsRaiseScriptstyle=\skip63
 )
+(/usr/share/texmf-dist/tex/latex/amsfonts/amssymb.sty
+Package: amssymb 2013/01/14 v3.01 AMS font symbols
+)
+(/usr/share/texmf-dist/tex/latex/braket/braket.sty)
 (/usr/share/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2023/03/13 v3.1a Micro-typographical refinements (RS)
 
@@ -612,9 +616,35 @@ LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
 (Font)                  OT1/cmr/bx/it --> T1/futs/m/it on input line 130.
 LaTeX Font Info:    Redeclaring math alphabet \mathcal on input line 131.
+LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 132.
+LaTeX Font Info:    Redeclaring math symbol \leqslant on input line 138.
+LaTeX Font Info:    Redeclaring math symbol \geqslant on input line 139.
+LaTeX Font Info:    Redeclaring math symbol \vDash on input line 142.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleleft on input line 14
+3.
+LaTeX Font Info:    Redeclaring math symbol \blacktriangleright on input line 1
+44.
+LaTeX Font Info:    Redeclaring math symbol \nleqslant on input line 145.
+LaTeX Font Info:    Redeclaring math symbol \ngeqslant on input line 146.
 LaTeX Font Info:    Redeclaring math symbol \parallel on input line 147.
+LaTeX Font Info:    Redeclaring math symbol \nparallel on input line 148.
+LaTeX Font Info:    Redeclaring math symbol \nvDash on input line 150.
+LaTeX Font Info:    Redeclaring math symbol \intercal on input line 151.
+LaTeX Font Info:    Redeclaring math symbol \hslash on input line 152.
+LaTeX Font Info:    Redeclaring math symbol \nexists on input line 153.
+LaTeX Font Info:    Redeclaring math symbol \complement on input line 154.
+LaTeX Font Info:    Redeclaring math symbol \varsubsetneq on input line 155.
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 161.
+LaTeX Font Info:    Redeclaring math symbol \smallsetminus on input line 162.
+LaTeX Font Info:    Redeclaring math symbol \subsetneqq on input line 163.
+LaTeX Font Info:    Redeclaring math symbol \rightrightarrows on input line 164
+.
+LaTeX Font Info:    Redeclaring math symbol \leftleftarrows on input line 165.
 LaTeX Font Info:    Redeclaring math symbol \square on input line 166.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowleft on input line 167.
+LaTeX Font Info:    Redeclaring math symbol \curvearrowright on input line 168.
+
+LaTeX Font Info:    Redeclaring math symbol \blacksquare on input line 169.
 LaTeX Font Info:    Redeclaring math symbol \varkappa on input line 199.
 LaTeX Font Info:    Redeclaring math symbol \varvarrho on input line 200.
 LaTeX Font Info:    Redeclaring math delimiter \Vert on input line 223.
@@ -1224,115 +1254,117 @@ Overfull \hbox (6.72633pt too wide) in paragraph at lines 229--229
 
 LaTeX Warning: Marginpar on page 1 moved.
 
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 244
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 245
 .
 (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 )
-Overfull \hbox (3.64069pt too wide) in paragraph at lines 246--247
-\T1/futs/m/n/12 ther-more, deal-ing with higher de-gree prob-lems re-quire more
- com-pli-cated cir-cuits which makes
+Overfull \hbox (11.05263pt too wide) in paragraph at lines 258--259
+\T1/futs/m/n/12 first defin-ing $\FML/futmi/m/it/12 F\T1/futs/m/n/12 (\FML/futm
+i/m/it/12 x\T1/futs/m/n/12 )$ to be the dig-its of $\FML/futmi/m/it/12 f\T1/fut
+s/m/n/12 (\FML/futmi/m/it/12 x\T1/futs/m/n/12 )$, then set-ting, by a slight ab
+use of no-ta-tion, $[] \FMS/futm/m/n/12 ^^81
  []
 
 [1] [2]
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 336.
+(Font)              using `T1/futs/m/sc' instead on input line 337.
 
 
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1931) has occurred while \output is active []
 
  [3]
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 353.
+(Font)              scaled to size 7.35999pt on input line 354.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.25598pt on input line 353.
+(Font)              scaled to size 6.25598pt on input line 354.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 353.
+(Font)              scaled to size 7.35999pt on input line 354.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.25598pt on input line 353.
+(Font)              scaled to size 6.25598pt on input line 354.
 
-Underfull \vbox (badness 1400) has occurred while \output is active []
+Underfull \vbox (badness 4108) has occurred while \output is active []
 
  [4]
-Overfull \hbox (20.81953pt too wide) detected at line 386
-[][][][]
- []
-
 [5]
-Overfull \hbox (5.8211pt too wide) in paragraph at lines 431--432
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [6]
+[7]
+Overfull \hbox (5.8211pt too wide) in paragraph at lines 489--490
 []\T1/futs/m/n/12 An el-e-ment $\FML/futmi/m/it/12 x \FMS/futm/m/n/12 ^^81 [][]
 [][] 2 f\T1/futs/m/n/12 0\FML/futmi/m/it/12 ; \T1/futs/m/n/12 1\FMS/futm/m/n/12
  g[]$ \T1/futs/m/n/12 is also re-garded as a bi-nary num-ber via $\FML/futmi/m/
@@ -1341,7 +1373,7 @@ it/12 x \FMS/futm/m/n/12 ^^X [] []^^81
 
 Missing character: There is no ’ ("2019) in font futr8t!
 
-Overfull \hbox (6.01624pt too wide) in paragraph at lines 445--446
+Overfull \hbox (6.01624pt too wide) in paragraph at lines 503--504
 []\T1/futs/m/n/12 Fix $\FML/futmi/m/it/12 ^^N \FMS/futm/m/n/12 2 [][][][]$ \T1/
 futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
  ^^U []\FMS/futm/m/n/12 ^^81 []$\T1/futs/m/n/12 , where $\FML/futmi/m/it/12 C[]
@@ -1349,9 +1381,9 @@ futs/m/n/12 and $\FML/futmi/m/it/12 y$\T1/futs/m/n/12 . Let $\FML/futmi/m/it/12
 2 l []\FMS/futm/m/n/12 ^^81 [][]$\T1/futs/m/n/12 .
  []
 
-[6] (./Grover_FPS_for_QUBO.bbl)
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 4
-75.
+[8] (./Grover_FPS_for_QUBO.bbl)
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
+33.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1362,18 +1394,18 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [7]
-[8] (./Grover_FPS_for_QUBO.aux)
+ [9]
+[10] (./Grover_FPS_for_QUBO.aux)
 Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
-(rerunfilecheck)             Checksum: 5A92BCA560AC23C076318FAC7DEFA08A;2061.
+(rerunfilecheck)             Checksum: CC42711AFED9DA50C8816A560A86EC7B;2051.
  ) 
 Here is how much of TeX's memory you used:
- 34816 strings out of 476683
- 684415 string characters out of 5809790
- 1912018 words of memory out of 5000000
- 54303 multiletter control sequences out of 15000+600000
+ 35155 strings out of 476683
+ 687281 string characters out of 5809790
+ 1910018 words of memory out of 5000000
+ 54635 multiletter control sequences out of 15000+600000
  627308 words of font info for 123 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
  115i,23n,118p,1187b,1332s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Grover_FPS_for_QUBO.pdf (8 pages).
+Output written on Grover_FPS_for_QUBO.pdf (10 pages).
