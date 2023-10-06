@@ -2,6 +2,17 @@
 \begin{bibdiv}
 \begin{biblist}
 
+\bib{linear_dasilva_2022}{article}{
+      author={da~Silva, Adenilton~J.},
+      author={Park, Daniel~K.},
+       title={Linear-depth quantum circuits for multiqubit controlled gates},
+        date={2022Oct},
+     journal={Phys. Rev. A},
+      volume={106},
+       pages={042602},
+         url={https://link.aps.org/doi/10.1103/PhysRevA.106.042602},
+}
+
 \bib{gilliam_foundational_2021}{article}{
       author={Gilliam, Austin},
       author={Venci, Charlene},

@@ -2,7 +2,7 @@
 
 %%%%%%%%%% todo stuff %%%%%%%%%%
 
-\documentclass[reqno,oneside,12pt]{amsart}  % for todos
+\documentclass[reqno,oneside,10pt]{amsart}  % for todos
 
 \usepackage[textwidth=0.9in]{todonotes}
 \reversemarginpar
@@ -135,16 +135,10 @@
 \def\rd{\mathrm{d}}
 \def\diag{\mathrm{diag}}
 \def\dist{\mathrm{dist}}
-\def\Div{\mathrm{Div}}
 \def\dom{\mathrm{dom}}
-\def\End{\mathrm{End}}
-\def\rG{\mathrm{G}}
-\def\Hom{\mathrm{Hom}}
 \def\Im{\mathrm{Im}}
 \def\image{\mathrm{image}}
 \def\index{\mathrm{index}}
-\def\Isom{\mathrm{Isom}}
-\def\Lie{\mathrm{Lie}}
 \def\PU{\mathrm{PU}}
 \def\rk{\mathrm{rk}}
 \def\Re{\mathrm{Re}}
@@ -152,10 +146,7 @@
 \def\sign{\mathrm{sign}}
 \def\SL{\mathrm{SL}}
 \def\SO{\mathrm{SO}}
-\def\Sp{\mathrm{Sp}}
-\def\Spec{\mathrm{Spec}}
 \def\spn{\mathrm{span}}
-\def\Spin{\mathrm{Spin}}
 \def\Sym{\mathrm{Sym}}
 \def\SU{\mathrm{SU}}
 \def\supp{\mathrm{supp}}
@@ -174,7 +165,7 @@
 \subjclass[2020]{}
 
 \author{\'Akos Nagy}
-\address[\'Akos Nagy]{Department of Mathematics, University of California, Santa Barbara}
+\address[\'Akos Nagy]{BEIT Canada, Toronto, Ontario}
 \urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
 \email{\href{mailto:contact@akosnagy.com}{contact@akosnagy.com}}
 
@@ -270,7 +261,7 @@ Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdo
 
 Let us make two definitions: Let $\QFT_d$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{d - 1} \leqslant y < 2^{d - 1}$, we have
 \begin{equation}
-   \QFT_d \ket{y}_d = 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d.
+   \QFT_d \ket{y}_d = 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d.
 \end{equation}
 Then
 \begin{equation}
@@ -281,9 +272,9 @@ Now let $\cP_d (k)$ be the following $m$-qubit gate
    \begin{quantikz}
       \lstick{$\ket{z_0}$} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$e^{\frac{2 \pi k z_0 2^{d - 1}}{2^d} i} \ket{z_0}$} \\
       \vdots \\
-      \lstick{$\ket{z_j}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$e^{\frac{2 \pi z_j 2^{m - j - 1}}{2^d}} \ket{z_j}$} \\
+      \lstick{$\ket{z_j}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$e^{\frac{2 \pi z_j 2^{d - j - 1}}{2^d}} \ket{z_j}$} \\
       \vdots \\
-      \lstick{$\ket{z_{m - 1}}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^d} \)} & \qw \rstick{$e^{\frac{2 \pi k z_{m - 1}}{2^d} i} \ket{z_d}$}
+      \lstick{$\ket{z_{d - 1}}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^d} \)} & \qw \rstick{$e^{\frac{2 \pi k z_{d - 1}}{2^d} i} \ket{z_d}$}
    \end{quantikz}   
 \end{equation}
 Thus $\cP_d \( k \) \ket{z}_d = e^{\frac{2 \pi k z}{2^d} i} \ket{z}_d$.
@@ -301,7 +292,7 @@ Now we can prove a well-known lemma. {\color{red} citation needed}
 \begin{proof}
    First we compute
    \begin{align}
-      \cP_d \( k \) \circ \QFT_d \ket{y}_d  &= \cP \( k \) \( 2^{- \frac{m}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d \) \\
+      \cP_d \( k \) \circ \QFT_d \ket{y}_d  &= \cP \( k \) \( 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d \) \\
          &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \cP \( k \) \ket{z}_d \\
          &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^d} i} \ket{z}_d \\
          &= \QFT_d \ket{y + k \mod 2^{d - 1}},
@@ -346,7 +337,7 @@ Let $\P_n$ be the power set of $\{ 0, 1, \ldots, n - 1 \}$. Now, for an arbitrar
 \begin{equation}
    f (x) = \sum\limits_{I \in \P_n} A_I x^I,
 \end{equation}
-and $d \in \N_+$ large enough so that all values of $f$ can be digitized on $m$ bits, we have that
+and $d \in \Z_+$ large enough so that all values of $f$ can be digitized on $m$ bits, we have that
 \begin{equation}
    \begin{quantikz}
       \lstick{$\ket{0}_n$}   & \qw              & \gate[2]{H^{\otimes (n + d)}}        & \qw & \ctrl{1} \gategroup[2, steps=1, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{\tiny{one for each $I = \left\{ i_1, i_2, \ldots, i_{|I|} \right\} \in \P_n$, controlled by qubits $x_{i_1}, x_{i_2}, \ldots, x_{i_{|I|}}$}}                    & \qw \ \ldots \ & \qw & \qw                   & \qw \rstick[2]{$\ket{\qdict \( f \)}$} \\
@@ -424,105 +415,110 @@ where $\braket{t | \overline{t}} = \braket{s | \overline{s}} = 0$. Then
    S_s \( \alpha \) \( A \ket{s} + B \ket{\overline{s}} \)  &= e^{i \alpha} A \ket{s} + B \ket{\overline{s}}, \\
    S_t \( \beta \) \( D \ket{t} + C \ket{\overline{t}} \)   &= e^{i \beta} C \ket{s} + D \ket{\overline{t}}.
 \end{align}
-Let $G \( \alpha, \beta \) \eqdef S_s \( \alpha \) S_t \( \beta \)$. Once in possession of such oracles and a target probability $P \in \( 0, 1 \)$, the main result of \cite{yoder_fixed_2014} can be summarized as follows: for any $\lambda^\prime \in \( 0, \lambda \)$ large enough, there exists $l = l \( P, \lambda \) \in \N_+$ and $\delta = \delta_{P, \lambda} \in \( 0, 1 \)$, such that if
-\begin{equation}
-   \forall j \in \{ 1, \ldots, l \}: \: \alpha_j = \beta_{l - j + 1} = 2 \cot^{- 1} \( \tan \( \tfrac{2 \pi j}{2 l + 1} \) \tanh \( \tfrac{\cosh^{- 1} \( \tfrac{1}{\delta} \)}{2 l + 1} \) \),
-\end{equation}
+Let $G \( \alpha, \beta \) \eqdef S_s \( \alpha \) S_t \( \beta \)$. Once in possession of such oracles and a target probability $P \in \( 0, 1 \)$, the main result of \cite{yoder_fixed_2014} can be summarized as follows: for any $\mu \in \( 0, \lambda \right]$ large enough, there exists $l = l \( P, \mu \) \in \Z_+$ and $\delta = \delta_{P, \mu} \in \( 0, 1 \)$, such that if, for all $j \in \{ 1, \ldots, l \}$, we set
+\begin{align}
+   \alpha_j &\eqdef 2 \mathrm{arccot} \( \tan \( \tfrac{2 \pi j}{2 l + 1} \) \tanh \( \tfrac{\mathrm{arccosh} \( \nicefrac{1}{\delta} \)}{2 l + 1} \) \), \\
+   \beta_j  &\eqdef \alpha_{l - j + 1},
+\end{align}
 then
 \begin{equation}
-   P_{\mathrm{success}} \eqdef \left| \left\langle t \middle| G \( \alpha_1, \beta_1 \) \cdots G \( \alpha_1, \beta_1 \) \middle| s \right\rangle \right|^2 \geqslant P.
+   P_{\mathrm{success}} \eqdef \left| \left\langle t \middle| G \( \alpha_l, \beta_l \) \cdots G \( \alpha_1, \beta_1 \) \middle| s \right\rangle \right|^2 \geqslant P.
 \end{equation}
 Moreover, $l, \delta$ can be explicitly computed (see next section).
 
+\smallskip
+
 We implement $S_s \( \alpha \)$ and $S_t \( \beta \)$ in straightforward ways. If $U_s$ is the state preparation oracle, that is, $\ket{s} = U_s \ket{0}$, and $\mathrm{MCP}_n \( \alpha \)$ is the $(n - 1)$-controlled phase gate on $n$ qubits, then
 \begin{equation}
-   S_s \( \alpha \) = U_s \mathrm{MCP}_n \( \alpha \) U_s^\dagger,
+   S_s \( \alpha \) = U_s \mathrm{MCP}_n \( \alpha \) U_s^\dagger, \label{eq:diffuser}
 \end{equation}
-works.
+works. Note that $\mathrm{MCP}_n$ can be implemented with $O \( n^2 \)$ CNOT gates and circuit depth, and no ancillas; cf. \cite{linear_dasilva_2022}.
 
-In general, the implementation of $S_t \( \beta \)$ is case specific. In the case of QUBO problems, we can use constructions of \Cref{sec:quad,sec:xor_basis}, to get an oracle, $U_t$ on $n + 1$ qubits, such that for all $x \in \Z_2^n$ and $y \in \Z_2$, we have
+In general, the implementation of $S_t \( \beta \)$ is case specific. In the case of an instance of a QUBO problem, let $T \eqdef \{ x \in \Z_2^n | f(x) < 0 \}$. Now the construction in \Cref{sec:quad,sec:xor_basis} yields an oracle, $U_t$ on $n + 1$ qubits, such that for all $x \in \Z_2^n$ and $y \in \Z_2$, we have
 \begin{equation}
-   U \ket{x} \ket{y} = \left\{ \begin{array}{ll} \ket{x} \ket{y \oplus 1}, & \mbox{if } x \in T, \\ \ket{x} \ket{y}, & \mbox{if } x \notin T. \end{array} \right.
+   U \ket{x} \ket{y} = \left\{ \begin{array}{ll} \ket{x} \ket{y \oplus 1}, & \mbox{if } x \in T, \\ \ket{x} \ket{y}, & \mbox{if } x \notin T, \end{array} \right.
 \end{equation}
-Then
+where the $(n + 1)^{\mathrm{st}}$ qubit is the first ancilla of the original oracle. Now
 \begin{equation}
-   S_t \( \beta \) = U_t \textsc{phase}_{n + 1} \( \alpha \) U_t,
+   \begin{quantikz}
+      \lstick{$\ket{x}$} \qw & \gate[2]{U_t} \gategroup[2, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$S_t \( \beta \)$} & \qw & \gate[2]{U_t} & \qw \rstick[2]{$e^{i \beta} \ket{x} \ket{y}$} \\
+      \lstick{$\ket{y}$} \qw & & \gate{\textsc{phase} \( \beta \)} & & \qw
+   \end{quantikz}
 \end{equation}
-works, if the $(n + 1)^{\mathrm{st}}$ qubits is a clean ancilla kept in $\ket{0}$ before and after the usage of the oracle.
-
-\newpage
-
-{\color{red} Everything below is old stuff that I might or might not want to include.}
-
-\noindent\textbf{Input:} A symmetric, integer-valued, $n$-by-$n$ matrix, $Q$ and a constant $c \in \Z$, or, equivalently, a quadratic function on $x \in \{ 0, 1 \}^n$ given by
-\begin{equation}
-   f (x) \eqdef x^T Q x + c. \label{eq:QUBO}
-\end{equation}
-(Note that since $x_i^2 = x_i$, we can move linear terms into the diagonal of $Q$.)
+works for $S_t \( \beta \)$, if the $(n + 1)^{\mathrm{st}}$ qubits is a clean ancilla kept in $\ket{0}$ before and after the usage of the oracle. Since QFT can be implemented on $d$ qubits use $O \( d^2 \)$ CNOT gates, the (worst case) CNOT count of $U_t$ is $O \( n^2 d \)$, as long as $d = O \( n^2 \)$. Moreover, eliminating small angle phase gates, approximate QFT oracles can be implemented with $O \( d \log (d) \)$ gates and depth, which means $d = e^{O \( n^2 \)}$ is enough for the rest of the oracle to dominate the complexity.
 
 \smallskip
 
-\noindent\textbf{Output:} An estimate for the value
-\begin{equation}
-   M \eqdef \max \( \left\{ \ f (x) \ \middle| \ x \in \{ 0, 1 \}^n \ \right\} \).
-\end{equation}
-
-\medskip
-
-\begin{example}[Maximal Graph Cuts]
-   Given a simple, undirected graph, $G = \( V, E \)$, let $Q$ be its graph Laplacian, defined as
-   \begin{equation}
-      Q_{i, j} = \left\{ \begin{array}{ll} \deg \( v_i \), & \mbox{if } i = j, \\ - 1, & \mbox{if } \{ v_i, v_j \} \in E, \\ 0, & \mbox{otherwise,} \end{array} \right.
-   \end{equation}
-   $b = 0$ and $c = 0$. Then $V = V^+ \coprod V^-$ is a maximal exactly when $\mathrm{MaxCut} (G) = f(x) = M$, where $x \in \{ 0, 1 \}^n$ is defined as $x_i = 1$ if $v_i \in V^+$ and zero otherwise.
-
-   The Edwards--Erd\H{o}s bound yields
-   \begin{equation}
-      \mathrm{MaxCut} (G) \geqslant B_G \eqdef \left\{ \begin{array}{ll} \frac{2 |V| + |E| - 1}{4}, & \mbox{if (we know that) $G$ is connected,} \\ \frac{|V|}{2} + \sqrt{\tfrac{|V|}{8} + \tfrac{1}{64}} - \frac{1}{8}, & \mbox{otherwise.} \end{array} \right.
-   \end{equation}
-\end{example}
+\begin{remark}
+   \label{remark:graphcuts}
+    In the case when $f$ is the cut function of a simple, unoriented, and undirected graph, with $n$ vertices and $m$ edges, GFPS can be implemented on $n + O \( \log (n) \)$ qubits and with gate count being $O \( m \log (m) \)$.
+\end{remark}
 
 \bigskip
 
-\section{The oracles:}
+\section{Time complexity}
+\label{sec:time}
 
-An element $x = \( x_1, x_2, \ldots, x_n \) \in \{ 0, 1 \}^n$ is also regarded as a binary number via $x \sim \overline{x_1 x_2 \ldots x_n} \eqdef \sum_i x_i 2^{n - i}$ and as an element of the computational basis via
-\begin{equation}
-   \ket{x}_n \eqdef \ket{x_1} \ldots \ket{x_{n - 1}} \ket{x_n},
-\end{equation}
-Given a function as in \cref{eq:QUBO}, let us pick $m \gg \log_2 \( M \)$ (in fact, $m = \left\lceil \log_2 \( \tr \( Q \) \) \right\rceil + 1$ works for our purposes). We use the binary 2’s complement convention when digitizing integers and we with that in mind, we construct a oracle on $\( n + m \)$-qubits, $U_f$, so that
-\begin{equation}
-   U_f \ket{x}_n \ket{y}_d = \ket{x}_n \ket{y - f (x)}_d.
-\end{equation}
-Note that the $\( n + 1 \)^{\mathrm{th}}$ register of $U_f \ket{x}_n \ket{y}_d$ is $\ket{1}$ exactly when $y < f (x)$.
+In order to understand the time-complexity of GFPS for QUBO problems, we need two know three things:
+\begin{enumerate}
 
-\medskip
+   \item The query complexity, $l$.
 
-\section{Application to Grover fixed-point search and state preparation}
+   \item The complexity of the diffusion operator, $U_s$. We assume in this section that $U_s = H^{\otimes n}$. Let us call this complexity $C_s$.
 
-Fix $\delta \in \( 0, 1 \)$ and $y$. Let $\lambda \eqdef \tfrac{\left| C_y \right|}{2^n}$, where $C_y \eqdef \left\{ x \in \{ 0, 1 \}^n \middle| f (x) \geqslant y \right\}$. Finally let $l \eqdef \left\lceil \tfrac{\log_2 \( \tfrac{2}{\delta} \)}{2 \sqrt{\lambda}} - \tfrac{1}{2} \right\rceil$. Then, following \cite{yoder_fixed_2014}, we can construct a Quantum circuit (using $U_f$ from the previous section), that results in a state $S_l \ket{0}_n \ket{y}_d$ with the following significance: When the first $n$ qubits are measured in the computational basis, then
-\begin{equation}
-   P \( x \in C_y \) = \sum_{x \in C_y} \left| \bra{x} S_l \ket{0} \right|^2 \geqslant 1 - \delta^2.
-\end{equation}
+   \item The complexity of the  operator, $U_t$. Let us call this complexity $C_t$.
 
-Let us make the following definitions:
-\begin{align}
-   U_S                     &\eqdef H^{\otimes n} \otimes \id^{\otimes m}, \\
-   R_0 \( \alpha \)        &\eqdef \id^{\otimes (n + m)} + \( 1 - e^{i \alpha} \) \ket{0}_n \bra{0}_n \otimes \id^{\otimes (1 + m)}, \\
-   R_T \( \beta \)         &\eqdef U_f^\dagger P_{n + 1} \( \beta \) U_f, \\
-   G \( \alpha, \beta \)   &\eqdef - U_S R_0 \( \alpha \) U_S^\dagger R_T \( \beta \).
-\end{align}
-Let $\( \pmb{\alpha}, \pmb{\beta} \) = \( \alpha_1, \beta_1, \cdots, \alpha_l, \beta_l \)$ be given by
-\begin{equation}
-   \forall j \in \{ 1, \ldots, l \}: \quad \alpha_j \eqdef - \beta_{l - j + 1} = 2 \cot^{- 1} \( \tan \( \tfrac{2 \pi j}{2 l + 1} \) \sqrt{1 - \gamma^2} \),
-\end{equation}
-where $\gamma \eqdef \( T_{\nicefrac{1}{\( 2 l + 1\)}} \( \delta^{- 1} \) \)^{- 1}$
-and let
-\begin{equation}
-   S_l \( \pmb{\alpha}, \pmb{\beta} \) = G \( \alpha_l, \beta_l \) G \( \alpha_{l - 1}, \beta_{l - 1} \) \cdots G \( \alpha_1, \beta_1 \) U_S. \label{eq:S_l-def}
-\end{equation}
+\end{enumerate}
+
+The time complexity is then $l \( C_s + 2 C_t + 1 \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 d \)$. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 d \)$. Note that we still have two addition parameters in this formula, that are to be chosen. First, the number $\mu \in \( 0, \lambda \right]$ and the number of digits, $d \in \Z_+$. We discuss the choice of $\mu$ in the next section. The number $d$ needs to be chosen so that all values of $f (x)$ can be represented on $d$ binary digits. This can be computed from the spectrum of $Q$, or other extra structures that the problem might have.
+
+\begin{remark}
+   In the case of maximal graph cuts, we have already seen in \Cref{remark:graphcuts} we have already seen that the complexity becomes $C_t = O \( m \ln (m) \) \leqslant O \( n^2 \ln (n) \)$, and thus the complexity of GFPS is $O \( \mu^{- \frac{1}{2}} \( n^2 + m \ln(m) \) \)$.
+\end{remark}
+
+\bigskip
+
+\section{Adaptive Search}
+\label{sec:adaptive}
+
+As mentioned in the previous section, the choice of $\mu$ is problematic; it needs to be at most $\lambda \in \( 0, 1 \)$, the ratio of marked configurations to all configurations (or, more precisely, the tunneling amplitude between the initial state and the target state), but $\lambda$ is not known. The ideal choice would be $\mu = \lambda$, but $\lambda$ is not known. It can be, partially, remedied as follows: Using repeated runs with $\lambda_k = \lambda_0 2^{- k}$ with $k = 1, 2, \ldots$, we can get under $\lambda$ while not increasing the big-$O$ time complexity of the algorithm.
+
+\smallskip
+
+Note that so far we only implemented a search algorithm that finds negative values of a(n integer) QUBO problem. For any $y \in \Z$, we can repeat the algorithm with the polynomial $y - f(x)$, making the set of marked states to be $T_y \eqdef \{ x \in \Z_2^n | f(x) \geqslant y \}$. Since our goal is not just to find configurations, $x$, with values, $f(x)$, above a certain threshold, but rather to find configurations with as high values as possible, we regard $y$ as another parameter. We propose the following adaptive (quantum--classical hybrid) method that we call, following \cite{gilliam_grover_2021}, \emph{Adaptive Grover Fixed-point Search} (AGFPS): Given an instance of a QUBO problem and a time threshold $T > 0$, set $t_0 \eqdef 0$, $\lambda_{0, \mathrm{i}} \eqdef \tfrac{1}{2}$, choose $x_0 \in Z_2^n$ randomly, and set $y_0 \eqdef f \( x_0 \)$. While $t_k < T, \: (k \in \Z_+)$, do
+\begin{itemize}
+   \item[] Given $y_k, \lambda_{k, \mathrm{i}}$, use the above method to find $x_{k + 1}$ with $f \( x_{k + 1} \) > y_k$.
+   
+   \item[] Let $\lambda_{k, f} > 0$ be the parameter of this search.
+   
+   \item[] Set $y_{k + 1} \eqdef f \( x_{k + 1} \)$, $\lambda_{k + 1, i} \eqdef \lambda_{k, f}$, and $t_{k + 1} \eqdef t_k + \sqrt{\lambda_{k, f}}$.
+\end{itemize}
+Output the last configuration.
+
+\smallskip
+
+\begin{remark}
+   The parameter $\delta$, that is approximately the square root of the failure probability, is assumed to be small, but not changed throughout the iterations. Allowing $\delta$ to vary is another potential direction of improvement.
+\end{remark}
+
+\bigskip
+
+\section{Experiments on IonQ's Quantum Computers}
+\label{sec:experiments}
 
 
+
+\bigskip
+
+\section{Simulation using small graph}
+\label{sec:smallgraphs}
+
+
+
+\bigskip
+
+\section{Conclusion}
+\label{sec:conclusion}
 
 
 
