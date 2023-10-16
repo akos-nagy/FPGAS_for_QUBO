@@ -1,13 +1,4 @@
-%\documentclass[reqno,10pt]{amsart}
-
-%%%%%%%%%% todo stuff %%%%%%%%%%
-
-\documentclass[reqno,oneside,10pt]{amsart}  % for todos
-
-\usepackage[textwidth=0.9in]{todonotes}
-\reversemarginpar
-\setuptodonotes{fancyline,color=blue!40,size=\tiny}
-\setlength{\marginparwidth}{0.8in}
+\documentclass[reqno,10pt]{amsart}
 
 %%%%%%%%%% Packages %%%%%%%%%%
 
@@ -25,8 +16,10 @@
 \expandafter\def\csname ver@etex.sty\endcsname{3000/12/31}
 \let\globcount\newcount
 \usepackage{autonum}                            % must be called after cleveref
+\usepackage[dvipsnames]{xcolor}
 \usepackage{tikz}
 \usetikzlibrary{quantikz}
+\usepackage{subcaption}
 
 %%%%%%%%%% align break fix %%%%%%%%%%
 
@@ -161,8 +154,8 @@
 
 \title{(Adaptive) Grover Fixed-point Search for Binary Optimization Problems}
 \date{\today}
-\keywords{Grover Fixed-point Search, Binary Optimization}
-\subjclass[2020]{}
+\keywords{Grover Fixed-point Search, Quadratic Binary Optimization}
+\subjclass[2020]{11E16, 68Q12, 81P65, 81P68}
 
 \author{\'Akos Nagy}
 \address[\'Akos Nagy]{BEIT Canada, Toronto, Ontario}
@@ -213,20 +206,17 @@
 
 \section{Introduction}
 
-\todo{to be completed later...}
+\emph{to be completed later...}
 
 \smallskip
 
-\subsection*{Organization of the paper:} \todo{to be completed later...}
+\subsection*{Organization of the paper:} \emph{to be completed later...}
 
 
-\begin{comment}
+
 \smallskip
 
-\begin{acknowledgment}
-   
-\end{acknowledgment}
-\end{comment}
+\subsection*{Organization of the paper:} \emph{to be completed later...}   
 
 \bigskip
 
@@ -279,7 +269,7 @@ Now let $\cP_d (k)$ be the following $m$-qubit gate
 \end{equation}
 Thus $\cP_d \( k \) \ket{z}_d = e^{\frac{2 \pi k z}{2^d} i} \ket{z}_d$.
 
-Now we can prove a well-known lemma. {\color{red} citation needed}
+Now we can prove a well-known lemma. {\color{Red} citation needed}
 
 \begin{lemma}
    \label{lemma:quantum_adder}
@@ -464,13 +454,13 @@ In order to understand the time-complexity of GFPS for QUBO problems, we need tw
 
    \item The query complexity, $l$.
 
-   \item The complexity of the diffusion operator, $U_s$. We assume in this section that $U_s = H^{\otimes n}$. Let us call this complexity $C_s$.
+   \item The complexity of the diffusion operator, $S_s \( \alpha \)$. Let us call this complexity $C_s$.
 
-   \item The complexity of the  operator, $U_t$. Let us call this complexity $C_t$.
+   \item The complexity of the operator, $S_t \( \beta \)$. Let us call this complexity $C_t$.
 
 \end{enumerate}
 
-The time complexity is then $l \( C_s + 2 C_t + 1 \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 d \)$. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 d \)$. Note that we still have two addition parameters in this formula, that are to be chosen. First, the number $\mu \in \( 0, \lambda \right]$ and the number of digits, $d \in \Z_+$. We discuss the choice of $\mu$ in the next section. The number $d$ needs to be chosen so that all values of $f (x)$ can be represented on $d$ binary digits. This can be computed from the spectrum of $Q$, or other extra structures that the problem might have.
+The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 d \)$. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 d \)$. Note that we still have two addition parameters in this formula, that are to be chosen. First, the number $\mu \in \( 0, \lambda \right]$ and the number of digits, $d \in \Z_+$. We discuss the choice of $\mu$ in the next section. The number $d$ needs to be chosen so that all values of $f (x)$ can be represented on $d$ binary digits. This can be computed from the spectrum of $Q$, or other extra structures that the problem might have.
 
 \begin{remark}
    In the case of maximal graph cuts, we have already seen in \Cref{remark:graphcuts} we have already seen that the complexity becomes $C_t = O \( m \ln (m) \) \leqslant O \( n^2 \ln (n) \)$, and thus the complexity of GFPS is $O \( \mu^{- \frac{1}{2}} \( n^2 + m \ln(m) \) \)$.
@@ -506,6 +496,70 @@ Output the last configuration.
 \section{Experiments on IonQ's Quantum Computers}
 \label{sec:experiments}
 
+\begin{comment}
+\subsection{Summary of Experiments}
+
+We demonstrate GFPS for IonQ’s Harmony quantum computer with 9 algorithmic all-to-all connected qubits. 6 randomly generated 5-vertice graphs with query complexity of 1 and error bound of $1*10^{-5}$ were tested on Harmony. Several trials for each graph were taken and the trial with highest success probability was recorded for each graph. Because the algorithm is probabilistic and further bounded by some non-zero error, there can be no guarantee of a success probability of \%100. These results were compared with the random probability of measuring cuts above the threshold (ie $N2^{1-v}$) where v represents the number of vertices and N represents the number of cuts above the threshold. The results of these experiments are displayed in FIGURE 1.
+
+\begin{figure}[!h]
+   \begin{subfigure}{.5\textwidth}
+   \centering
+   \includegraphics[width=.8\linewidth]{100shotGraph.png}
+   \caption{100 shot}
+   \label{fig:sfig1}
+   \end{subfigure}%
+   \begin{subfigure}{.5\textwidth}
+   \centering
+   \includegraphics[width=.8\linewidth]{500shotGraph.png}
+   \caption{500 shot}
+   \label{fig:sfig2}
+   \end{subfigure}
+   \caption{Success probabilities of Grover's FPS run on IonQ's Harmony with 100 and 500 shots. The measured success probability is shown in blue while the random probability <where eq?> is in red}
+   \label{fig:fig}
+\end{figure} 
+
+At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
+
+\medskip
+\end{comment}
+
+\subsection{Oracle testing on Aria 2:} As the only nonstandard part of the circuit is the marker oracle, $U_t$, we separately tested that alone as well. The test was done using $9$ qubits ($5$-bit QUBO with $4$ ancillas) on IonQ's Aria 2 with $5000$ shots. The matrix of the quadratic form is
+\begin{equation}
+   Q = \begin{pmatrix}
+         2 & - 1 & 0 & - 1 & 0 \\
+         - 1 & 1 & 0 & 0 & 0 \\
+         0 & 0 & 2 & 0 & - 1 \\
+         - 1 & 0 & 0 & 2 & 0 \\
+         0 & 0 & - 1 & 0 & 2
+      \end{pmatrix},
+\end{equation}
+with threshold $y = 5$. It is easy to see that out of the $2^5 = 32$ configurations only $3$ are above or equal to the threshold, thus should be marked. We index configurations by the numerical value they represent in base $2$.
+\begin{center}
+\begin{tiny}
+\begin{tabular}{|l|c|c|c||l|c|c|c|}
+   \hline
+   index & $f (x) - y$ & not marked & marked & index & $f (x) - y$ & not marked & marked \\
+   \hline
+   0 & -5 & {\color{ForestGreen} 3.44\%} & {\color{Red} 0.74\%} & 16 & -3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.66\%} \\
+   1 & -3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.36\%} & 17 & -1 & {\color{ForestGreen} 1.06\%} & {\color{Red} 0.26\%} \\
+   2 & -4 & {\color{ForestGreen} 3.18\%} & {\color{Red} 0.52\%} & 18 & -2 & {\color{ForestGreen} 1.04\%} & {\color{Red} 0.30\%} \\
+   3 & -4 & {\color{ForestGreen} 4.08\%} & {\color{Red} 0.86\%} & 19 & -2 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.48\%} \\
+   4 & -3 & {\color{ForestGreen} 2.16\%} & {\color{Red} 0.68\%} & 20 & -3 & {\color{ForestGreen} 3.90\%} & {\color{Red} 0.78\%} \\
+   5 & -1 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.40\%} & 21 & -1 & {\color{ForestGreen} 2.30\%} & {\color{Red} 0.36\%} \\
+   6 & -2 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 22 & -2 & {\color{ForestGreen} 3.42\%} & {\color{Red} 0.58\%} \\
+   7 & -2 & {\color{ForestGreen} 2.90\%} & {\color{Red} 0.32\%} & 23 & -2 & {\color{ForestGreen} 4.54\%} & {\color{Red} 0.34\%} \\
+   8 & -3 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 24 & -1 & {\color{ForestGreen} 1.14\%} & {\color{Red} 0.38\%} \\
+   9 & -3 & {\color{ForestGreen} 5.26\%} & {\color{Red} 0.74\%} & 25 & -1 & {\color{ForestGreen} 2.82\%} & {\color{Red} 0.44\%} \\
+   10 & -2 & {\color{ForestGreen} 2.52\%} & {\color{Red} 0.34\%} & 26 & 0 & {\color{Red} 0.52\%} & {\color{ForestGreen} 1.16\%} \\
+   11 & -4 & {\color{ForestGreen} 2.84\%} & {\color{Red} 0.38\%} & 27 & -2 & {\color{ForestGreen} 1.60\%} & {\color{Red} 0.52\%} \\
+   12 & -1 & {\color{ForestGreen} 1.58\%} & {\color{Red} 0.20\%} & 28 & -1 & {\color{ForestGreen} 1.88\%} & {\color{Red} 0.26\%} \\
+   13 & -1 & {\color{ForestGreen} 2.94\%} & {\color{Red} 0.88\%} & 29 & -1 & {\color{ForestGreen} 5.94\%} & {\color{Red} 1.74\%} \\
+   14 & 0 & {\color{Red} 1.06\%} & {\color{ForestGreen} 1.52\%} & 30 & 0 & {\color{Red} 0.94\%} & {\color{ForestGreen} 2.46\%} \\
+   15 & -2 & {\color{ForestGreen} 2.20\%} & {\color{Red} 0.36\%} & 31 & -2 & {\color{ForestGreen} 4.18\%} & {\color{Red} 0.74\%} \\
+   \hline
+\end{tabular}
+\end{tiny}
+\end{center}
 
 
 \bigskip
