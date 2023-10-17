@@ -212,12 +212,6 @@
 
 \subsection*{Organization of the paper:} \emph{to be completed later...}
 
-
-
-\smallskip
-
-\subsection*{Organization of the paper:} \emph{to be completed later...}   
-
 \bigskip
 
 \section{(Polynomial Unconstrained) Binary Optimization and Quantum Dictionaries}
@@ -496,34 +490,7 @@ Output the last configuration.
 \section{Experiments on IonQ's Quantum Computers}
 \label{sec:experiments}
 
-\begin{comment}
-\subsection{Summary of Experiments}
-
-We demonstrate GFPS for IonQ’s Harmony quantum computer with 9 algorithmic all-to-all connected qubits. 6 randomly generated 5-vertice graphs with query complexity of 1 and error bound of $1*10^{-5}$ were tested on Harmony. Several trials for each graph were taken and the trial with highest success probability was recorded for each graph. Because the algorithm is probabilistic and further bounded by some non-zero error, there can be no guarantee of a success probability of \%100. These results were compared with the random probability of measuring cuts above the threshold (ie $N2^{1-v}$) where v represents the number of vertices and N represents the number of cuts above the threshold. The results of these experiments are displayed in FIGURE 1.
-
-\begin{figure}[!h]
-   \begin{subfigure}{.5\textwidth}
-   \centering
-   \includegraphics[width=.8\linewidth]{100shotGraph.png}
-   \caption{100 shot}
-   \label{fig:sfig1}
-   \end{subfigure}%
-   \begin{subfigure}{.5\textwidth}
-   \centering
-   \includegraphics[width=.8\linewidth]{500shotGraph.png}
-   \caption{500 shot}
-   \label{fig:sfig2}
-   \end{subfigure}
-   \caption{Success probabilities of Grover's FPS run on IonQ's Harmony with 100 and 500 shots. The measured success probability is shown in blue while the random probability <where eq?> is in red}
-   \label{fig:fig}
-\end{figure} 
-
-At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
-
-\medskip
-\end{comment}
-
-\subsection{Oracle testing on Aria 2:} As the only nonstandard part of the circuit is the marker oracle, $U_t$, we separately tested that alone as well. The test was done using $9$ qubits ($5$-bit QUBO with $4$ ancillas) on IonQ's Aria 2 with $5000$ shots. The matrix of the quadratic form is
+\subsection{Oracle testing on IonQ's Aria $2$:} As our main experiment, we tested the marker oracle, $U_t$, alone, since that is the only novel part of the GFPS circuit. The test was done using $9$ qubits ($5$-bit QUBO with $4$ ancillas) on IonQ's Aria $2$ QPU with $5000$ shots. The matrix of the quadratic form used for the test is
 \begin{equation}
    Q = \begin{pmatrix}
          2 & - 1 & 0 & - 1 & 0 \\
@@ -533,7 +500,7 @@ At 100 shots, GFPS has a higher probability of finding the maximal cut than by s
          0 & 0 & - 1 & 0 & 2
       \end{pmatrix},
 \end{equation}
-with threshold $y = 5$. It is easy to see that out of the $2^5 = 32$ configurations only $3$ are above or equal to the threshold, thus should be marked. We index configurations by the numerical value they represent in base $2$.
+with threshold $y = 5$. It is easy to see that out of the $2^5 = 32$ configurations only $3$ are above or equal to the threshold, thus $\lambda = \tfrac{3}{32}$. We index configurations by the numerical value they represent in base $2$.
 \begin{center}
 \begin{tiny}
 \begin{tabular}{|l|c|c|c||l|c|c|c|}
@@ -561,6 +528,20 @@ with threshold $y = 5$. It is easy to see that out of the $2^5 = 32$ configurati
 \end{tiny}
 \end{center}
 
+\medskip
+
+\subsection{Full GFPS testing on IonQ's Harmony and Aria $2$:}
+
+We tested $6$ randomly generated $5$-vertex graphs with target probability chosen so that the query complexity is $1$ on IonQ's Harmony QPU. Several trials for each graph were taken and the trial with the highest success probability was recorded for each graph. Because the algorithm is probabilistic and further bounded by some nonzero error, there can be no guarantee of a success probability of \%100. These results were compared with the random probability of measuring cuts above the threshold (that is $\lambda$). The results of these experiments are displayed in \Cref{fig:Harmony}.
+
+\begin{figure}[!h]
+   \centering
+   \includegraphics[width=.5\linewidth]{100shotGraph.png}
+   \caption{$100$ shot}
+   \label{fig:Harmony}
+\end{figure} 
+
+At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
 
 \bigskip
 
