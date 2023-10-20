@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  17 OCT 2023 16:14
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  20 OCT 2023 13:39
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1258,125 +1258,125 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 220
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 224
 .
 
 (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 )
-Overfull \hbox (3.13246pt too wide) in paragraph at lines 228--229
+Overfull \hbox (3.13246pt too wide) in paragraph at lines 232--233
 []\T1/futs/m/n/10 Briefly, the quan-tum dic-tio-nary, cor-re-spond-ing to a fun
 c-tion (thought of as a clas-si-cal dic-tio-nary), $\FML/futmi/m/it/10 F \T1/fu
 ts/m/n/10 : [][][][][] \FMS/futm/m/n/10 !
  []
 
-[1]
-Underfull \vbox (badness 4569) has occurred while \output is active []
-
- [2]
+[1] [2]
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 312.
+(Font)              using `T1/futs/m/sc' instead on input line 316.
 
-[3] [4]
+[3]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [5]
-[6]
+ [4]
+[5] [6]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 493.
-
-
-Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 493.
+(hyperref)                removing `math shift' on input line 497.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 535.
+(hyperref)                removing `math shift' on input line 497.
+
+
+Underfull \vbox (badness 2922) has occurred while \output is active []
+
+ [7]
+
+Package hyperref Warning: Token not allowed in a PDF string (Unicode):
+(hyperref)                removing `math shift' on input line 539.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 535.
+(hyperref)                removing `math shift' on input line 539.
 
-[7]
 File: 100shotGraph.png Graphic file (type bmp)
 <100shotGraph.png>
- (./Grover_FPS_for_QUBO.bbl)
+(./Grover_FPS_for_QUBO.bbl [8])
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-64.
+68.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1385,14 +1385,14 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 
-[8] [9] (./Grover_FPS_for_QUBO.aux)
+[9] (./Grover_FPS_for_QUBO.aux)
 Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
-(rerunfilecheck)             Checksum: D538C8476468C3719B3E4C34782558F8;3011.
+(rerunfilecheck)             Checksum: 0D3B15F959854EE19357C0AF84C63E85;3285.
  ) 
 Here is how much of TeX's memory you used:
  36470 strings out of 476683
  712392 string characters out of 5809790
- 1931018 words of memory out of 5000000
+ 1929018 words of memory out of 5000000
  55941 multiletter control sequences out of 15000+600000
  607975 words of font info for 95 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191

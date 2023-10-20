@@ -152,7 +152,7 @@
 
 %%%%%%%%%% Other formatting %%%%%%%%%%
 
-\title{(Adaptive) Grover Fixed-point Search for Binary Optimization Problems}
+\title{(Adaptive) Grover Fixed-point Search for QUBO Problems}
 \date{\today}
 \keywords{Grover Fixed-point Search, Quadratic Binary Optimization}
 \subjclass[2020]{11E16, 68Q12, 81P65, 81P68}
@@ -160,7 +160,7 @@
 \author{\'Akos Nagy}
 \address[\'Akos Nagy]{BEIT Canada, Toronto, Ontario}
 \urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
-\email{\href{mailto:contact@akosnagy.com}{contact@akosnagy.com}}
+\email{\href{mailto:akos@beit.tech}{akos@beit.tech}}
 
 \author{Jaime Park}
 \address[Jaime Park]{}
@@ -199,7 +199,7 @@
 \begin{document}
 
 \begin{abstract}
-	\emph{to be completed later...}
+   \emph{to be completed later...}
 \end{abstract}
 
 \maketitle
@@ -210,7 +210,11 @@
 
 \smallskip
 
-\subsection*{Organization of the paper:} \emph{to be completed later...}
+\subsection*{Organization of the paper:} In \Cref{sec:qubos_and_qdicts}, we introduce the two central notions of the paper; QUBO problems and Quantum Dictionaries. In \Cref{sec:quad}, we provide an outline of the construction of \cite{gilliam_grover_2021} of the oracle for QUBOs and in \Cref{sec:xor_basis} we give our modified design.
+
+\smallskip
+
+\subsection*{Acknowledgment:} We are grateful to Amazon Web Services and QLab for providing credits to access IonQ's QPUs. We also thank to Constantin Gonciulea for providing feedback on an earlier version of the work and QuForce.org for bringing the authors together for the project. \Cref{sec:grover_for_qubo} introduces the Grover Fixed-point search for QUBOs
 
 \bigskip
 
@@ -230,7 +234,7 @@ Briefly, the quantum dictionary, corresponding to a function (thought of as a cl
    \ket{\qdict \( F \)} \eqdef \tfrac{1}{\sqrt{\left| \dom \( F \) \right|}} \sum\limits_{x \in \dom \( F \)} \ket{x}_n \ket{F (x)}_d.
 \end{equation}
 
-An integer-valued function $f : \Z_n^2 \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. Let us handle signs via the ``Two's complement'' convention, in particular, a binary number $y_0 y_1 \ldots y_{d - 1}$ is negative exactly when $y_0 = 1$. In fact, every quantum dictionary can be realized in this a way.
+An integer-valued function $f : \Z_2^n \rightarrow \Z$ canonically determines a quantum dictionary via first defining $F (x)$ to be the digits of $f (x)$, then setting, by a slight abuse of notation, $\ket{\qdict \( f \)} = \ket{\qdict \( F \)}$. Let us handle signs via the ``Two's complement'' convention, in particular, a binary number $y_0 y_1 \ldots y_{d - 1}$ is negative exactly when $y_0 = 1$. In fact, every quantum dictionary can be realized in this a way.
 
 \smallskip
 
@@ -332,7 +336,7 @@ and $d \in \Z_+$ large enough so that all values of $f$ can be digitized on $m$ 
 
 \medskip
 
-\subsection{New basis for quadratic polynomials}
+\subsection{New basis for quadratic polynomials and the new oracle design}
 \label{sec:xor_basis}
 
 We motivate the idea of the new basis by outlining it in the $n = 2$ case.
@@ -372,7 +376,7 @@ we have that if $q_i = \sum\limits_{j = 0}^{n - 1} Q_{ij}$ is the sum of the $i^
 \begin{align}
    f \( x_0, x_1, \ldots, x_{n - 1} \) = \sum\limits_{i = 0}^{n - 1} q_i x_i - \sum\limits_{i = 0}^{n - 2} \sum\limits_{j = i + 1}^{n - 1} Q_{ij} \( x_i - x_j \)^2.
 \end{align}
-Since $1$-controlled $\cP$-gates require $2d$ and $2$-controlled $\cP$-gates require $8d$ CNOT gates, the oracle design of \cite{gilliam_grover_2021} requires $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 8 d \) = \( 4 n^2 - 2 n \) d$ CNOT gates. Our construction however requires only $2 + 2d$ CNOT gates for each quadratic term, so the total CNOT count is $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 2 + 2 d \) = \( d + 1 \) n^2 + \( d - 1\) n$, which is an approximately threefold improvement in the generic case.
+Since $1$-controlled $\cP$-gates require $2d$ and $2$-controlled $\cP$-gates require $8d$ CNOT gates, the oracle design of \cite{gilliam_grover_2021} requires $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 8 d \) = \( 4 n^2 - 2 n \) d$ CNOT gates. Our construction however requires only $2 + 2d$ CNOT gates for each quadratic term, so the total CNOT count is $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 2 + 2 d \) = \( d + 1 \) n^2 + \( d - 1\) n$, which is an approximately fourfold improvement in the generic case. Moreover, since up to $d$ terms can be digitized in parallel, the time complexity of the oracle is $O \( n^2 \)$, as long as $d = o \( n \)$.
 
 \begin{remark}
    In the case a single, quadratic monomial and $d = 1$, there is no advantage; in fact, in this case, our construction is just the well-known $2$-controlled phase gate from \cite{nielsen_quantum_2010}*{Figure~4.8}. Using this observation and a bit more work, one can also show that our construction is never worse (in terms of gate count, CNOT count, or gate circuit depth), than that of \cite{gilliam_grover_2021}.
@@ -389,7 +393,7 @@ Grover Fixed-Point Search (GFPS) \cite{yoder_fixed_2014} is a variant of Grover'
 
 \smallskip
 
-As opposed to Grover's algorithm, where the only input is the set of \emph{good} (or \emph{target}) configurations, $T \subset \Z_n^2$, the GFPS algorithm requires an additional one, that can be chosen to be either the target probability/amplitude or the query complexity. The target probability is the probability of finding the system in a good state after running the circuit. The price of this flexibility (and of the elimination of half of the souffl\'e problem) is that on needs to implement not only a pair of oracles, but two families of them, call $S_s \( \alpha \)$ and $S_t \( \beta \)$ (where the subscripts refer to the \emph{start} and \emph{target} states, and $\alpha, \beta$ are real parameters), with the following properties: let fix gauge so that, for some $\lambda \in \( 0, 1 \)$, we can write
+As opposed to Grover's algorithm, where the only input is the set of \emph{good} (or \emph{target}) configurations, $T \subset \Z_2^n$, the GFPS algorithm requires an additional one, that can be chosen to be either the target probability/amplitude or the query complexity. The target probability is the probability of finding the system in a good state after running the circuit. The price of this flexibility (and of the elimination of half of the souffl\'e problem) is that on needs to implement not only a pair of oracles, but two families of them, call $S_s \( \alpha \)$ and $S_t \( \beta \)$ (where the subscripts refer to the \emph{start} and \emph{target} states, and $\alpha, \beta$ are real parameters), with the following properties: let fix gauge so that, for some $\lambda \in \( 0, 1 \)$, we can write
 \begin{align}
    \ket{s}  &= \sqrt{\lambda} \ket{t} + \sqrt{1 - \lambda} \ket{\overline{t}}, \\
    \ket{t}  &= \sqrt{\lambda} \ket{s} + \sqrt{1 - \lambda} \ket{\overline{s}},
@@ -429,13 +433,13 @@ where the $(n + 1)^{\mathrm{st}}$ qubit is the first ancilla of the original ora
       \lstick{$\ket{y}$} \qw & & \gate{\textsc{phase} \( \beta \)} & & \qw
    \end{quantikz}
 \end{equation}
-works for $S_t \( \beta \)$, if the $(n + 1)^{\mathrm{st}}$ qubits is a clean ancilla kept in $\ket{0}$ before and after the usage of the oracle. Since QFT can be implemented on $d$ qubits use $O \( d^2 \)$ CNOT gates, the (worst case) CNOT count of $U_t$ is $O \( n^2 d \)$, as long as $d = O \( n^2 \)$. Moreover, eliminating small angle phase gates, approximate QFT oracles can be implemented with $O \( d \log (d) \)$ gates and depth, which means $d = e^{O \( n^2 \)}$ is enough for the rest of the oracle to dominate the complexity.
+works for $S_t \( \beta \)$, if the $(n + 1)^{\mathrm{st}}$ qubits is a clean ancilla kept in $\ket{0}$ before and after the usage of the oracle. Since QFT can be implemented on $d$ qubits use $O \( d^2 \)$ CNOT gates, the (worst case) CNOT count of $U_t$ is $O \( n^2 \)$, as long as $d = O \( n^2 \)$.
 
 \smallskip
 
 \begin{remark}
    \label{remark:graphcuts}
-    In the case when $f$ is the cut function of a simple, unoriented, and undirected graph, with $n$ vertices and $m$ edges, GFPS can be implemented on $n + O \( \log (n) \)$ qubits and with gate count being $O \( m \log (m) \)$.
+    In the case when $f$ is the cut function of a simple, unoriented, and undirected graph, with $n$ vertices and $m$ edges, GFPS can be implemented on $n + O \( \log (m) \)$ qubits, with gate count being $O \( m \log (m) \)$, and circuit depth of $O \( m \)$.
 \end{remark}
 
 \bigskip
@@ -454,10 +458,10 @@ In order to understand the time-complexity of GFPS for QUBO problems, we need tw
 
 \end{enumerate}
 
-The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 d \)$. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 d \)$. Note that we still have two addition parameters in this formula, that are to be chosen. First, the number $\mu \in \( 0, \lambda \right]$ and the number of digits, $d \in \Z_+$. We discuss the choice of $\mu$ in the next section. The number $d$ needs to be chosen so that all values of $f (x)$ can be represented on $d$ binary digits. This can be computed from the spectrum of $Q$, or other extra structures that the problem might have.
+The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 \)$ as well. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 \)$. Note that we still have the choice of the number $\mu \in \( 0, \lambda \right]$ that we discuss in the next section.
 
 \begin{remark}
-   In the case of maximal graph cuts, we have already seen in \Cref{remark:graphcuts} we have already seen that the complexity becomes $C_t = O \( m \ln (m) \) \leqslant O \( n^2 \ln (n) \)$, and thus the complexity of GFPS is $O \( \mu^{- \frac{1}{2}} \( n^2 + m \ln(m) \) \)$.
+   In the case of maximal graph cuts, we have already seen in \Cref{remark:graphcuts} we have already seen that the complexity becomes $C_t = O \( m \) \leqslant O \( n^2 \)$, and thus the complexity of GFPS is $O \( \mu^{- \frac{1}{2}} \( n^2 + m \ln(m) \) \)$.
 \end{remark}
 
 \bigskip
