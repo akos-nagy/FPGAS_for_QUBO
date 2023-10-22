@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  20 OCT 2023 13:39
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  22 OCT 2023 18:18
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1270,6 +1270,10 @@ c-tion (thought of as a clas-si-cal dic-tio-nary), $\FML/futmi/m/it/10 F \T1/fu
 ts/m/n/10 : [][][][][] \FMS/futm/m/n/10 !
  []
 
+
+Overfull \vbox (2.47568pt too high) has occurred while \output is active []
+
+
 [1] [2]
 
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
@@ -1347,36 +1351,36 @@ LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
 LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
 (Font)              using `T1/futs/m/sc' instead on input line 316.
 
-[3]
+
 Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [3]
+Underfull \vbox (badness 1622) has occurred while \output is active []
 
  [4]
 [5] [6]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 497.
+(hyperref)                removing `math shift' on input line 496.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 497.
+(hyperref)                removing `math shift' on input line 496.
 
-
-Underfull \vbox (badness 2922) has occurred while \output is active []
-
- [7]
+[7]
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 539.
+(hyperref)                removing `math shift' on input line 538.
 
 
 Package hyperref Warning: Token not allowed in a PDF string (Unicode):
-(hyperref)                removing `math shift' on input line 539.
+(hyperref)                removing `math shift' on input line 538.
 
 File: 100shotGraph.png Graphic file (type bmp)
 <100shotGraph.png>
 (./Grover_FPS_for_QUBO.bbl [8])
 LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-68.
+60.
  (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
 )
@@ -1387,13 +1391,13 @@ Package microtype Info: Loading generic protrusion settings for font family
 
 [9] (./Grover_FPS_for_QUBO.aux)
 Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
-(rerunfilecheck)             Checksum: 0D3B15F959854EE19357C0AF84C63E85;3285.
+(rerunfilecheck)             Checksum: 847B144D910D006B94E8DD88E9BC324A;3098.
  ) 
 Here is how much of TeX's memory you used:
- 36470 strings out of 476683
- 712392 string characters out of 5809790
- 1929018 words of memory out of 5000000
- 55941 multiletter control sequences out of 15000+600000
+ 36468 strings out of 476683
+ 712345 string characters out of 5809790
+ 1924018 words of memory out of 5000000
+ 55939 multiletter control sequences out of 15000+600000
  607975 words of font info for 95 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
  100i,23n,131p,1187b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s

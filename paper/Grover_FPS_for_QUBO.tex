@@ -1,4 +1,4 @@
-\documentclass[reqno,10pt]{amsart}
+\documentclass[reqno, 10pt]{amsart}
 
 %%%%%%%%%% Packages %%%%%%%%%%
 
@@ -221,7 +221,7 @@
 \section{(Polynomial Unconstrained) Binary Optimization and Quantum Dictionaries}
 \label{sec:qubos_and_qdicts}
 
-For the rest of the paper, $\Z_2^n$ denotes the space of length-$n$ bitstrings. Given a function $f : \Z_2^n \rightarrow \rl$, the associated (Unconstrained) Binary Optimization problem is the task of finding an element $x \in \Z_2^n$ such that $f (x)$ is maximal. Note that every binary function is polynomial, which can be seen by simple dimension count.
+For the rest of the paper, $\Z_2^n$ denotes the space of length-$n$ bitstrings. If $x \in [0, 2^n - 1] \cap \Z$ and its binary representation if $x = \overline{x_0 x_1 \ldots x_{n - 1}} = \sum_{i = 0}^{n - 1} x_i 2^{n - 1 - i}$, then $\ket{x}_n \eqdef \ket{x_0} \ket{x_1} \ldots \ket{x_{n - 1}}$, and for an arbitrary $x \in \Z$, $\ket{x}_n = \ket{\bar{x}}_n$, where $x \equiv_{\mod n} \bar{x} \in [0, 2^n - 1] \cap \Z$. We also drop the subscript $n$, when it is unambiguous. Given a function $f : \Z_2^n \rightarrow \rl$, the associated (Unconstrained) Binary Optimization problem is the task of finding an element $x \in \Z_2^n$ such that $f (x)$ is maximal. Note that every binary function is polynomial, which can be seen by simple dimension count.
 
 Many interesting Binary Optimization problems, such as finding maximal graph cuts or the Max $2$-SAT problems are quadratic, and most of the contemporary research centers around Quadratic Unconstrained  Binary Optimization (QUBO) problems.
 
@@ -245,7 +245,7 @@ We construct the above-mentioned encoding oracles in two steps. First, we outlin
 \subsection{Quadratic encoder}
 \label{sec:quad}
 
-Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $x_I \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $n + d$ qubits. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_d$ to $\ket{x}_n \ket{x_I}_d$, for any $x \in \Z_2^n$.
+Let $I \subseteq \{ 1, 2, \ldots, n - 1 \}$ and $p_I (x) \eqdef x_{i_1} x_{i_2} \cdots x_{i_j}$ be an arbitrary monomial and consider a quantum circuit with $n + d$ qubits. Following \cite{gilliam_grover_2021}, we construct an oracle that sends $\ket{x}_n \ket{0}_d$ to $\ket{x}_n \ket{p_I (x)}_d$, for any $x \in \Z_2^n$.
 
 Let us make two definitions: Let $\QFT_d$ be the Quantum Fourier Transform on $m$ qubits, that is for any $- 2^{d - 1} \leqslant y < 2^{d - 1}$, we have
 \begin{equation}
@@ -258,11 +258,11 @@ Then
 Now let $\cP_d (k)$ be the following $m$-qubit gate
 \begin{equation}
    \begin{quantikz}
-      \lstick{$\ket{z_0}$} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$e^{\frac{2 \pi k z_0 2^{d - 1}}{2^d} i} \ket{z_0}$} \\
+      \lstick{$\ket{z_0}$} \qw  &  \gate{\textsc{phase} \( \pi k \)} & \qw \rstick{$e^{\frac{2 \pi i}{2^d} k z_0 2^{d - 1}} \ket{z_0}$} \\
       \vdots \\
-      \lstick{$\ket{z_j}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$e^{\frac{2 \pi z_j 2^{d - j - 1}}{2^d}} \ket{z_j}$} \\
+      \lstick{$\ket{z_j}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^{j + 1}} \)} & \qw \rstick{$e^{\frac{2 \pi i}{2^d} k z_j 2^{d - j - 1}} \ket{z_j}$} \\
       \vdots \\
-      \lstick{$\ket{z_{d - 1}}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^d} \)} & \qw \rstick{$e^{\frac{2 \pi k z_{d - 1}}{2^d} i} \ket{z_d}$}
+      \lstick{$\ket{z_{d - 1}}$} \qw  &  \gate{\textsc{phase} \( \tfrac{2 \pi k}{2^d} \)} & \qw \rstick{$e^{\frac{2 \pi i}{2^d} k z_{d - 1}} \ket{z_d}$}
    \end{quantikz}   
 \end{equation}
 Thus $\cP_d \( k \) \ket{z}_d = e^{\frac{2 \pi k z}{2^d} i} \ket{z}_d$.
@@ -273,7 +273,7 @@ Now we can prove a well-known lemma. {\color{Red} citation needed}
    \label{lemma:quantum_adder}
    For any $- 2^{d - 1} \leqslant y < 2^{d - 1}$ and $k \in \Z$ we have
    \begin{equation}
-      \QFT_d^\dagger \circ \cP_d \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k \mod 2^{d - 1}}.
+      \QFT_d^\dagger \circ \cP_d \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k}.
    \end{equation}
 \end{lemma}
 
@@ -283,11 +283,11 @@ Now we can prove a well-known lemma. {\color{Red} citation needed}
       \cP_d \( k \) \circ \QFT_d \ket{y}_d  &= \cP \( k \) \( 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \ket{z}_d \) \\
          &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi y z}{2^d} i} \cP \( k \) \ket{z}_d \\
          &= 2^{- \frac{d}{2}} \sum\limits_{z = - 2^{d - 1}}^{2^{d - 1} - 1} e^{\frac{2 \pi \( y + k \) z}{2^d} i} \ket{z}_d \\
-         &= \QFT_d \ket{y + k \mod 2^{d - 1}},
+         &= \QFT_d \ket{y + k},
    \end{align}
    hence
    \begin{equation}
-      \QFT_d^\dagger \circ \cP \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k \mod 2^{d - 1}}.
+      \QFT_d^\dagger \circ \cP \( k \) \circ \QFT_d \ket{y}_d = \ket{y + k}.
    \end{equation}
 \end{proof}
 
@@ -295,10 +295,10 @@ By \Cref{lemma:quantum_adder} it is immediate that
 \begin{equation}
    \begin{quantikz}
       \lstick{$\ket{x}_n$}   & \qw  & \qw             & \qw & \ctrl{1}                & \qw & \qw                    & \qw \rstick{$\ket{x}_n$} \\
-      \lstick{$\ket{0}_d$}   & \qw  & \gate{\QFT_d}   & \qw & \gate{C_I \cP \( 1 \)}  & \qw & \gate{\QFT_d^\dagger}  & \qw \rstick{$\ket{x_I}_d$}
+      \lstick{$\ket{0}_d$}   & \qw  & \gate{\QFT_d}   & \qw & \gate{C_I \cP \( 1 \)}  & \qw & \gate{\QFT_d^\dagger}  & \qw \rstick{$\ket{p_I (x)}_d$}
    \end{quantikz}
 \end{equation}
-is the desired oracle, where $C_I$ means control by the qubits $i_1, i_2, \ldots i_j$.
+where $C_I$ means control by the qubits $i_1, i_2, \ldots i_j$.
 
 Finally, to create the full quantum dictionary, $\ket{\qdict \( f \)}$, we need to pre-compose an oracle, call $U$, for which we have
 \begin{equation}
@@ -309,12 +309,13 @@ If $\dom \( f \) = \Z_2^n$, then $U = H^{\otimes n}$.
    Let $n = d = 2$ and $f (x) = x_0 x_1$. Now the encoder oracle takes the form
    \begin{equation}
       \begin{quantikz}
-         \lstick{$\ket{0}$}   & \qw  & \gate[2]{U}       & \qw & \ctrl{1}    & \qw & \ctrl{1}                                      & \qw & \qw \rstick[4]{$\ket{\qdict \( f \)}$} \\
-         \lstick{$\ket{0}$}   & \qw  &                   & \qw & \ctrl{1}                                                                                                                                                                       & \qw & \ctrl{2}                                      & \qw                      & \qw \\
-         \lstick{$\ket{0}$}   & \qw  & \gate[2]{\QFT_2}  & \qw & \gate{\textsc{phase} \( \pi \)} \gategroup[2, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$\cP \( 1 \)$}                                                                                                                                                & \qw & \qw                                           & \gate[2]{\QFT_2^\dagger} & \qw \\
-         \lstick{$\ket{0}$}   & \qw  &                   & \qw & \qw                                                                                                                                                                            & \qw & \gate{\textsc{phase} \( \nicefrac{\pi}{2} \)} &                          & \qw
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{U}             & \qw & \ctrl{1}    & \qw & \ctrl{1}                                      & \qw & \qw \rstick[4]{$\ket{\qdict \( f \)}$} \\
+         \lstick{$\ket{0}$}   & \qw  &                         & \qw & \ctrl{1}                                                                                                                                                                       & \qw & \ctrl{2}                                      & \qw                      & \qw \\
+         \lstick{$\ket{0}$}   & \qw  & \gate[2]{H^{\otimes 2}} & \qw & \gate{\textsc{phase} \( \pi \)} \gategroup[2, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$\cP \( 1 \)$}                                                                                                                                                & \qw & \qw                                           & \gate[2]{\QFT_2^\dagger} & \qw \\
+         \lstick{$\ket{0}$}   & \qw  &                         & \qw & \qw                                                                                                                                                                            & \qw & \gate{\textsc{phase} \( \nicefrac{\pi}{2} \)} &                          & \qw,
       \end{quantikz}
    \end{equation}
+   where we used that $\QFT_d \ket{0}_d = H^{\otimes d} \ket{0}_d$.
 \end{example}
 
 \smallskip
@@ -364,7 +365,7 @@ which now has CNOT count only $2 + 2d$. Thus the whole oracle (for arbitrary $f$
       \lstick{$\ket{0}_d$} \qw &                                & \gate{\cP \( \widetilde{A}_0 \)}   & \gate{\cP \( \widetilde{A}_1 \)}   & \qw        & \gate{\cP \( \widetilde{A}_{01} \)}   & \gate{\QFT_d^\dagger} & \qw
    \end{quantikz}
 \end{equation}
-making the new CNOT count for the whole oracle to be (at most) $2 + 6d$, again, not counting the CNOT gates in $\QFT_d^\dagger$. In fact, the only time the two counts equal is when $A_0 = A_1 = 0$, $A_{01} \neq 0$, and $d = 1$, that is, when middle of the oracle is a single doubly-controlled phase gate, in which case this construction recovers the well-known one; cf. \cite{nielsen_quantum_2010}*{Figure~4.8}.
+making the new CNOT count for the whole oracle to be (at most) $2 + 6d$, again, not counting the CNOT gates in $\QFT_d^\dagger$. In fact, the only time the two counts equal is when $A_0 = A_1 = 0$, $A_{01} \neq 0$, and $d = 1$.
 
 \smallskip
 
@@ -389,11 +390,11 @@ Since $1$-controlled $\cP$-gates require $2d$ and $2$-controlled $\cP$-gates req
 \section{Grover Fixed-point search for QUBO}
 \label{sec:grover_for_qubo}
 
-Grover Fixed-Point Search (GFPS) \cite{yoder_fixed_2014} is a variant of Grover's search algorithm that retains the original version query complexity while does not suffer from the souffl\'e problem (more on these below). In this section we introduce the algorithm, show how our oracle design from \Cref{sec:xor_basis} can be used to implement GFPS for QUBO problems, and argue that this method is better suited for an adaptive optimizer algorithm, then the original.
+Grover Fixed-Point Search (GFPS) \cite{yoder_fixed_2014} is a variant of Grover's search algorithm that retains the original version query complexity while does not suffer from the souffl\'e problem (more on these below). In this section we introduce the algorithm, show how our oracle design from \Cref{sec:xor_basis} can be used to implement GFPS for QUBO problems, and argue that this method is better suited for an adaptive optimizer algorithm than the original.
 
 \smallskip
 
-As opposed to Grover's algorithm, where the only input is the set of \emph{good} (or \emph{target}) configurations, $T \subset \Z_2^n$, the GFPS algorithm requires an additional one, that can be chosen to be either the target probability/amplitude or the query complexity. The target probability is the probability of finding the system in a good state after running the circuit. The price of this flexibility (and of the elimination of half of the souffl\'e problem) is that on needs to implement not only a pair of oracles, but two families of them, call $S_s \( \alpha \)$ and $S_t \( \beta \)$ (where the subscripts refer to the \emph{start} and \emph{target} states, and $\alpha, \beta$ are real parameters), with the following properties: let fix gauge so that, for some $\lambda \in \( 0, 1 \)$, we can write
+As opposed to Grover's algorithm, where the only input is the set of \emph{good} (or \emph{target}) configurations, $T \subset \Z_2^n$, the GFPS algorithm requires an additional one, that can be chosen to be either the target probability/amplitude or the query complexity. The target probability is the probability of finding the system in a good state after running the circuit. The price of this flexibility (and of the elimination of half of the souffl\'e problem) is that one needs to implement not only a pair of oracles, but two families of them, call $S_s \( \alpha \)$ and $S_t \( \beta \)$ (where the subscripts refer to the \emph{start} and \emph{target} states, and $\alpha, \beta$ are real parameters), with the following properties: let us fix gauge so that, for some $\lambda \in \( 0, 1 \)$, we can write
 \begin{align}
    \ket{s}  &= \sqrt{\lambda} \ket{t} + \sqrt{1 - \lambda} \ket{\overline{t}}, \\
    \ket{t}  &= \sqrt{\lambda} \ket{s} + \sqrt{1 - \lambda} \ket{\overline{s}},
@@ -401,7 +402,7 @@ As opposed to Grover's algorithm, where the only input is the set of \emph{good}
 where $\braket{t | \overline{t}} = \braket{s | \overline{s}} = 0$. Then
 \begin{align}
    S_s \( \alpha \) \( A \ket{s} + B \ket{\overline{s}} \)  &= e^{i \alpha} A \ket{s} + B \ket{\overline{s}}, \\
-   S_t \( \beta \) \( D \ket{t} + C \ket{\overline{t}} \)   &= e^{i \beta} C \ket{s} + D \ket{\overline{t}}.
+   S_t \( \beta \) \( D \ket{t} + C \ket{\overline{t}} \)   &= e^{i \beta} C \ket{t} + D \ket{\overline{t}}.
 \end{align}
 Let $G \( \alpha, \beta \) \eqdef S_s \( \alpha \) S_t \( \beta \)$. Once in possession of such oracles and a target probability $P \in \( 0, 1 \)$, the main result of \cite{yoder_fixed_2014} can be summarized as follows: for any $\mu \in \( 0, \lambda \right]$ large enough, there exists $l = l \( P, \mu \) \in \Z_+$ and $\delta = \delta_{P, \mu} \in \( 0, 1 \)$, such that if, for all $j \in \{ 1, \ldots, l \}$, we set
 \begin{align}
@@ -444,7 +445,7 @@ works for $S_t \( \beta \)$, if the $(n + 1)^{\mathrm{st}}$ qubits is a clean an
 
 \bigskip
 
-\section{Time complexity}
+\subsection{Time complexity}
 \label{sec:time}
 
 In order to understand the time-complexity of GFPS for QUBO problems, we need two know three things:
@@ -473,13 +474,11 @@ As mentioned in the previous section, the choice of $\mu$ is problematic; it nee
 
 \smallskip
 
-Note that so far we only implemented a search algorithm that finds negative values of a(n integer) QUBO problem. For any $y \in \Z$, we can repeat the algorithm with the polynomial $y - f(x)$, making the set of marked states to be $T_y \eqdef \{ x \in \Z_2^n | f(x) \geqslant y \}$. Since our goal is not just to find configurations, $x$, with values, $f(x)$, above a certain threshold, but rather to find configurations with as high values as possible, we regard $y$ as another parameter. We propose the following adaptive (quantum--classical hybrid) method that we call, following \cite{gilliam_grover_2021}, \emph{Adaptive Grover Fixed-point Search} (AGFPS): Given an instance of a QUBO problem and a time threshold $T > 0$, set $t_0 \eqdef 0$, $\lambda_{0, \mathrm{i}} \eqdef \tfrac{1}{2}$, choose $x_0 \in Z_2^n$ randomly, and set $y_0 \eqdef f \( x_0 \)$. While $t_k < T, \: (k \in \Z_+)$, do
+Note that so far we only implemented a search algorithm that finds negative values of a(n integer-valued) QUBO problem. For any given $y \in \Z$, we can repeat the algorithm with the polynomial $y - f(x)$, making the set of marked states to be $T_y \eqdef \{ x \in \Z_2^n | f(x) > y \}$. Since our goal is not just to find configurations, $x$, with values, $f(x)$, above a certain threshold, but rather to find configurations with as high values as possible, we regard $y$ as another parameter. We propose the following adaptive (quantum--classical hybrid) method that we call, following \cite{gilliam_grover_2021}, \emph{Adaptive Grover Fixed-point Search} (AGFPS): Given an instance of a QUBO problem and a time threshold $t_{\max} > 0$, set $t \eqdef 0$, $\lambda_{0, \mathrm{i}} \eqdef \tfrac{1}{2}$, choose $x_0 \in Z_2^n$ randomly, and set $y_0 \eqdef f \( x_0 \)$. While $t < t_{\max}, \: (k \in \Z_+)$, do
 \begin{itemize}
-   \item[] Given $y_k, \lambda_{k, \mathrm{i}}$, use the above method to find $x_{k + 1}$ with $f \( x_{k + 1} \) > y_k$.
+   \item[] Given $y_k, \lambda_{k, \mathrm{initial}}$, use the above method to search for $x_{k + 1}$ with $f \( x_{k + 1} \) > y_k$, while in each round incrementing $t$ by the query complexity $l$.
    
-   \item[] Let $\lambda_{k, f} > 0$ be the parameter of this search.
-   
-   \item[] Set $y_{k + 1} \eqdef f \( x_{k + 1} \)$, $\lambda_{k + 1, i} \eqdef \lambda_{k, f}$, and $t_{k + 1} \eqdef t_k + \sqrt{\lambda_{k, f}}$.
+   \item[] If $x_{k + 1}$ is found before termination: Let $\lambda_{k, \mathrm{final}} > 0$ be the parameter of this search, and set $y_{k + 1} \eqdef f \( x_{k + 1} \)$, $\lambda_{k + 1, \mathrm{initial}} \eqdef \lambda_{k, \mathrm{final}}$.
 \end{itemize}
 Output the last configuration.
 
@@ -546,13 +545,6 @@ We tested $6$ randomly generated $5$-vertex graphs with target probability chose
 \end{figure} 
 
 At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
-
-\bigskip
-
-\section{Simulation using small graph}
-\label{sec:smallgraphs}
-
-
 
 \bigskip
 
