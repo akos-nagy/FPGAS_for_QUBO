@@ -377,7 +377,9 @@ we have that if $q_i = \sum\limits_{j = 0}^{n - 1} Q_{ij}$ is the sum of the $i^
 \begin{align}
    f \( x_0, x_1, \ldots, x_{n - 1} \) = \sum\limits_{i = 0}^{n - 1} q_i x_i - \sum\limits_{i = 0}^{n - 2} \sum\limits_{j = i + 1}^{n - 1} Q_{ij} \( x_i - x_j \)^2.
 \end{align}
-Since $1$-controlled $\cP$-gates require $2d$ and $2$-controlled $\cP$-gates require $8d$ CNOT gates, the oracle design of \cite{gilliam_grover_2021} requires $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 8 d \) = \( 4 n^2 - 2 n \) d$ CNOT gates. Our construction however requires only $2 + 2d$ CNOT gates for each quadratic term, so the total CNOT count is $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 2 + 2 d \) = \( d + 1 \) n^2 + \( d - 1\) n$, which is an approximately fourfold improvement in the generic case. Moreover, since up to $d$ terms can be digitized in parallel, the time complexity of the oracle is $O \( n^2 \)$, as long as $d = o \( n \)$.
+The addition of a quadratic term, $x_i x_j$, in the oracle design of \cite{gilliam_grover_2021} is implemented via a $2$-controlled $\cP$-gate, whereas the addition of the term, $\( x_i - x_j \)^2$, in our construction is implemented via a $1$-controlled $\cP$-gate and $2$ additional CNOT gates, which is generally more economical both in terms of circuit depth and entangling gate counts. In particular, when decomposed to single-qubit gates and CNOT gates, the former design needs $8d$ for each $2$-controlled $\cP$-gate, while the latter requires only $2 + 2d$ CNOT gates. Thus the total CNOT counts for a generic quadratic polynomial are $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 8 d \) = \( 4 n^2 - 2 n \) d$ and $n \( 2 d \) + \tfrac{n \( n - 1 \)}{2} \( 2 + 2 d \) = \( d + 1 \) n^2 + \( d - 1\) n$, respectively, which is an approximately fourfold improvement. Since up to $d$ terms can be digitized in parallel, the time complexity of the oracle is $O \( n^2 \)$, as long as $d = o \( n \)$.
+
+\smallskip
 
 \begin{remark}
    In the case a single, quadratic monomial and $d = 1$, there is no advantage; in fact, in this case, our construction is just the well-known $2$-controlled phase gate from \cite{nielsen_quantum_2010}*{Figure~4.8}. Using this observation and a bit more work, one can also show that our construction is never worse (in terms of gate count, CNOT count, or gate circuit depth), than that of \cite{gilliam_grover_2021}.
@@ -423,11 +425,11 @@ We implement $S_s \( \alpha \)$ and $S_t \( \beta \)$ in straightforward ways. I
 \end{equation}
 works. Note that $\mathrm{MCP}_n$ can be implemented with $O \( n^2 \)$ CNOT gates and circuit depth, and no ancillas; cf. \cite{linear_dasilva_2022}.
 
-In general, the implementation of $S_t \( \beta \)$ is case specific. In the case of an instance of a QUBO problem, let $T \eqdef \{ x \in \Z_2^n | f(x) < 0 \}$. Now the construction in \Cref{sec:quad,sec:xor_basis} yields an oracle, $U_t$ on $n + 1$ qubits, such that for all $x \in \Z_2^n$ and $y \in \Z_2$, we have
+In general, the implementation of $S_t \( \beta \)$ is case specific. In the case of an instance of a QUBO problem, let $T \eqdef \{ x \in \Z_2^n | f(x) < 0 \}$. Now the results of \Cref{sec:quad,sec:xor_basis} can be immedately used to get an oracle, $U_t$, on $n + 1$ qubits, such that for all $x \in \Z_2^n$ and $y \in \Z_2$, we have
 \begin{equation}
    U \ket{x} \ket{y} = \left\{ \begin{array}{ll} \ket{x} \ket{y \oplus 1}, & \mbox{if } x \in T, \\ \ket{x} \ket{y}, & \mbox{if } x \notin T, \end{array} \right.
 \end{equation}
-where the $(n + 1)^{\mathrm{st}}$ qubit is the first ancilla of the original oracle. Now
+where the last qubit, $\ket{y}$, is the first ancilla of the original oracle. Now
 \begin{equation}
    \begin{quantikz}
       \lstick{$\ket{x}$} \qw & \gate[2]{U_t} \gategroup[2, steps=3, style={dashed, rounded corners, fill=blue!20}, background, label style={label position=below, anchor=north, yshift=-1em}]{$S_t \( \beta \)$} & \qw & \gate[2]{U_t} & \qw \rstick[2]{$e^{i \beta} \ket{x} \ket{y}$} \\
@@ -459,7 +461,7 @@ In order to understand the time-complexity of GFPS for QUBO problems, we need tw
 
 \end{enumerate}
 
-The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that the complexity is the of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 \)$ as well. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 \)$. Note that we still have the choice of the number $\mu \in \( 0, \lambda \right]$ that we discuss in the next section.
+The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, we know that $l \approx \tfrac{\ln \( 2 / \delta \)}{\sqrt{\mu}}$ is sharp. By \cref{eq:diffuser}, we see that $C_s$ is the same as the time complexity of the $\mathrm{MCP}_n \( \alpha \)$ gate. By \cite{linear_dasilva_2022}, we get that $C_s \leqslant O \( n^2 \)$ (and this is applies to both single qubit and CNOT gate counts). Finally, by the argument of the previous section, $C_t = O \( n^2 \)$ as well. This yields, for a fixed $\delta$, that the total time complexity if $O \( \mu^{- \frac{1}{2}} n^2 \)$. Note that we still have the choice of the number $\mu \in \( 0, \lambda \right]$ that we discuss in the next section.
 
 \begin{remark}
    In the case of maximal graph cuts, we have already seen in \Cref{remark:graphcuts} we have already seen that the complexity becomes $C_t = O \( m \) \leqslant O \( n^2 \)$, and thus the complexity of GFPS is $O \( \mu^{- \frac{1}{2}} \( n^2 + m \ln(m) \) \)$.
