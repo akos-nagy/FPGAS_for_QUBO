@@ -75,8 +75,8 @@
 \creflabelformat{diag}{#2{\upshape(#1)}#3}               % label format for diag
 \crefname{cond}{condition}{conditions}                % label for conditions
 \creflabelformat{cond}{#2{#1}#3}                   % label format for cond
-\crefname{table}{Table}{Tables}                       % label for Tables
-\creflabelformat{table}{#2{\upshape(#1)}#3}              % label format for Tables
+%\crefname{table}{Table}{Tables}                       % label for Tables
+%\creflabelformat{table}{#2{\upshape(#1)}#3}              % label format for Tables
 \crefname{hypothesis}{Hypothesis}{Hypotheses}            % label for Hypotheses
 \creflabelformat{hypothesis}{#2{#1}#3}                % label format for Hypotheses
 \crefname{remark}{Remark}{Remarks}                    % label for Remarks
@@ -206,11 +206,15 @@
 
 \section{Introduction}
 
-\emph{to be completed later...}
+Quadratic (Unconstrained) Binary Optimization problems provide some of the most interesting NP-Complete problems, such as cluster analysis, maximal graph cuts, or the Ising model. Approximation algorithms for such problems have been extensively studied for a long time both via classical methods and, more recently, using Quantum Computation {\color{red} add citations}.
+
+\medskip
+
+\subsection{Results:}
 
 \smallskip
 
-\subsection*{Organization of the paper:} In \Cref{sec:qubos_and_qdicts}, we introduce the two central notions of the paper; QUBO problems and Quantum Dictionaries. In \Cref{sec:quad}, we provide an outline of the construction of \cite{gilliam_grover_2021} of the oracle for QUBOs and in \Cref{sec:xor_basis} we give our modified design.
+\subsection*{Organization of the paper:} In \Cref{sec:qubos_and_qdicts}, we introduce the two central notions of the paper; QUBO problems and Quantum Dictionaries. In \Cref{sec:quad}, we provide an outline of the construction of \cite{gilliam_grover_2021} of the oracle for QUBOs and in \Cref{sec:xor_basis} we give our modified design. \emph{to be completed later...}
 
 \smallskip
 
@@ -472,11 +476,13 @@ The time complexity is then $l \( C_s + C_t \)$. From \cite{yoder_fixed_2014}, w
 \section{Adaptive Search}
 \label{sec:adaptive}
 
-As mentioned in the previous section, the choice of $\mu$ is problematic; it needs to be at most $\lambda \in \( 0, 1 \)$, the ratio of marked configurations to all configurations (or, more precisely, the tunneling amplitude between the initial state and the target state), but $\lambda$ is not known. The ideal choice would be $\mu = \lambda$, but $\lambda$ is not known. It can be, partially, remedied as follows: Using repeated runs with $\lambda_k = \lambda_0 2^{- k}$ with $k = 1, 2, \ldots$, we can get under $\lambda$ while not increasing the big-$O$ time complexity of the algorithm.
+As mentioned in the previous section, the choice of $\mu$ is problematic; it needs to be at most $\lambda \in \( 0, 1 \)$, the ratio of marked configurations to all configurations (or, more precisely, the tunneling amplitude between the initial state and the target state), but $\lambda$ is not known. The ideal choice would be $\mu = \lambda$, but $\lambda$ is not known. It can be, partially, remedied as follows: Using repeated runs with $\lambda_k = \lambda_0 2^{- k}$ with $k = 1, 2, \ldots$, we can get under $\lambda$ while not increasing the big-$O$ time complexity of the algorithm. Furthermore, note that so far we only implemented a search algorithm that finds negative values of a(n integer-valued) QUBO problem. For any given $y \in \Z$, we can repeat the algorithm with the polynomial $y - f(x)$, making the set of marked states to be $T_y \eqdef \{ x \in \Z_2^n | f(x) > y \}$. Since our goal is not just to find configurations, $x$, with values, $f(x)$, above a certain threshold, but rather to find configurations with as high values as possible, we regard $y$ as another parameter.
 
 \smallskip
 
-Note that so far we only implemented a search algorithm that finds negative values of a(n integer-valued) QUBO problem. For any given $y \in \Z$, we can repeat the algorithm with the polynomial $y - f(x)$, making the set of marked states to be $T_y \eqdef \{ x \in \Z_2^n | f(x) > y \}$. Since our goal is not just to find configurations, $x$, with values, $f(x)$, above a certain threshold, but rather to find configurations with as high values as possible, we regard $y$ as another parameter. We propose the following adaptive (quantum--classical hybrid) method that we call, following \cite{gilliam_grover_2021}, \emph{Adaptive Grover Fixed-point Search} (AGFPS): Given an instance of a QUBO problem and a time threshold $t_{\max} > 0$, set $t \eqdef 0$, $\lambda_{0, \mathrm{i}} \eqdef \tfrac{1}{2}$, choose $x_0 \in Z_2^n$ randomly, and set $y_0 \eqdef f \( x_0 \)$. While $t < t_{\max}, \: (k \in \Z_+)$, do
+We propose the following adaptive (quantum--classical hybrid) method: Let us assume that we are given an instance of a QUBO problem and a time threshold $t_{\max} > 0$, and our goal is to find a configuration with the highest value under $t_{\max}$ time.
+
+Set $t \eqdef 0$, $\lambda_{0, \mathrm{i}} \eqdef \tfrac{1}{2}$, choose $x_0 \in Z_2^n$ randomly, and set $y_0 \eqdef f \( x_0 \)$. While $t < t_{\max}, \: (k \in \Z_+)$, do
 \begin{itemize}
    \item[] Given $y_k, \lambda_{k, \mathrm{initial}}$, use the above method to search for $x_{k + 1}$ with $f \( x_{k + 1} \) > y_k$, while in each round incrementing $t$ by the query complexity $l$.
    
@@ -495,7 +501,7 @@ Output the last configuration.
 \section{Experiments on IonQ's Quantum Computers}
 \label{sec:experiments}
 
-\subsection{Oracle testing on IonQ's Aria $2$:} As our main experiment, we tested the marker oracle, $U_t$, alone, since that is the only novel part of the GFPS circuit. The test was done using $9$ qubits ($5$-bit QUBO with $4$ ancillas) on IonQ's Aria $2$ QPU with $5000$ shots. The matrix of the quadratic form used for the test is
+\subsection{Oracle testing:} The marker oracle, $U_t$, was tested on IonQ's Aria $2$ QPU. We used $9$ qubits ($5$-bit QUBO with $4$ ancillas) with $5000$ shots. The matrix of the quadratic form was
 \begin{equation}
    Q = \begin{pmatrix}
          2 & - 1 & 0 & - 1 & 0 \\
@@ -505,48 +511,35 @@ Output the last configuration.
          0 & 0 & - 1 & 0 & 2
       \end{pmatrix},
 \end{equation}
-with threshold $y = 5$. It is easy to see that out of the $2^5 = 32$ configurations only $3$ are above or equal to the threshold, thus $\lambda = \tfrac{3}{32}$. We index configurations by the numerical value they represent in base $2$.
-\begin{center}
-\begin{tiny}
-\begin{tabular}{|l|c|c|c||l|c|c|c|}
-   \hline
-   index & $f (x) - y$ & not marked & marked & index & $f (x) - y$ & not marked & marked \\
-   \hline
-   0 & -5 & {\color{ForestGreen} 3.44\%} & {\color{Red} 0.74\%} & 16 & -3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.66\%} \\
-   1 & -3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.36\%} & 17 & -1 & {\color{ForestGreen} 1.06\%} & {\color{Red} 0.26\%} \\
-   2 & -4 & {\color{ForestGreen} 3.18\%} & {\color{Red} 0.52\%} & 18 & -2 & {\color{ForestGreen} 1.04\%} & {\color{Red} 0.30\%} \\
-   3 & -4 & {\color{ForestGreen} 4.08\%} & {\color{Red} 0.86\%} & 19 & -2 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.48\%} \\
-   4 & -3 & {\color{ForestGreen} 2.16\%} & {\color{Red} 0.68\%} & 20 & -3 & {\color{ForestGreen} 3.90\%} & {\color{Red} 0.78\%} \\
-   5 & -1 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.40\%} & 21 & -1 & {\color{ForestGreen} 2.30\%} & {\color{Red} 0.36\%} \\
-   6 & -2 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 22 & -2 & {\color{ForestGreen} 3.42\%} & {\color{Red} 0.58\%} \\
-   7 & -2 & {\color{ForestGreen} 2.90\%} & {\color{Red} 0.32\%} & 23 & -2 & {\color{ForestGreen} 4.54\%} & {\color{Red} 0.34\%} \\
-   8 & -3 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 24 & -1 & {\color{ForestGreen} 1.14\%} & {\color{Red} 0.38\%} \\
-   9 & -3 & {\color{ForestGreen} 5.26\%} & {\color{Red} 0.74\%} & 25 & -1 & {\color{ForestGreen} 2.82\%} & {\color{Red} 0.44\%} \\
-   10 & -2 & {\color{ForestGreen} 2.52\%} & {\color{Red} 0.34\%} & 26 & 0 & {\color{Red} 0.52\%} & {\color{ForestGreen} 1.16\%} \\
-   11 & -4 & {\color{ForestGreen} 2.84\%} & {\color{Red} 0.38\%} & 27 & -2 & {\color{ForestGreen} 1.60\%} & {\color{Red} 0.52\%} \\
-   12 & -1 & {\color{ForestGreen} 1.58\%} & {\color{Red} 0.20\%} & 28 & -1 & {\color{ForestGreen} 1.88\%} & {\color{Red} 0.26\%} \\
-   13 & -1 & {\color{ForestGreen} 2.94\%} & {\color{Red} 0.88\%} & 29 & -1 & {\color{ForestGreen} 5.94\%} & {\color{Red} 1.74\%} \\
-   14 & 0 & {\color{Red} 1.06\%} & {\color{ForestGreen} 1.52\%} & 30 & 0 & {\color{Red} 0.94\%} & {\color{ForestGreen} 2.46\%} \\
-   15 & -2 & {\color{ForestGreen} 2.20\%} & {\color{Red} 0.36\%} & 31 & -2 & {\color{ForestGreen} 4.18\%} & {\color{Red} 0.74\%} \\
-   \hline
-\end{tabular}
-\end{tiny}
-\end{center}
+with threshold $y = 5$ that is, in fact, the maximum. Out of the $2^5 = 32$ configurations only $3$ equal to the threshold, thus $\lambda = \tfrac{3}{32}$. We index the configurations according to the numerical value they represent in base $2$. The experimental results are given in \Cref{table:oracle}.
+\begin{table}[ht]
+   \begin{tabular}{|l|c|c|c||l|c|c|c|}
+      \hline
+      index & $y - f (x)$ & not marked & marked & index & $f (x) - y$ & not marked & marked \\
+      \hline
+      0 & 5 & {\color{ForestGreen} 3.44\%} & {\color{Red} 0.74\%} & 16 & 3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.66\%} \\
+      1 & 3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.36\%} & 17 & 1 & {\color{ForestGreen} 1.06\%} & {\color{Red} 0.26\%} \\
+      2 & 4 & {\color{ForestGreen} 3.18\%} & {\color{Red} 0.52\%} & 18 & 2 & {\color{ForestGreen} 1.04\%} & {\color{Red} 0.30\%} \\
+      3 & 4 & {\color{ForestGreen} 4.08\%} & {\color{Red} 0.86\%} & 19 & 2 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.48\%} \\
+      4 & 3 & {\color{ForestGreen} 2.16\%} & {\color{Red} 0.68\%} & 20 & 3 & {\color{ForestGreen} 3.90\%} & {\color{Red} 0.78\%} \\
+      5 & 1 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.40\%} & 21 & 1 & {\color{ForestGreen} 2.30\%} & {\color{Red} 0.36\%} \\
+      6 & 2 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 22 & 2 & {\color{ForestGreen} 3.42\%} & {\color{Red} 0.58\%} \\
+      7 & 2 & {\color{ForestGreen} 2.90\%} & {\color{Red} 0.32\%} & 23 & 2 & {\color{ForestGreen} 4.54\%} & {\color{Red} 0.34\%} \\
+      8 & 3 & {\color{ForestGreen} 1.34\%} & {\color{Red} 0.36\%} & 24 & 1 & {\color{ForestGreen} 1.14\%} & {\color{Red} 0.38\%} \\
+      9 & 3 & {\color{ForestGreen} 5.26\%} & {\color{Red} 0.74\%} & 25 & 1 & {\color{ForestGreen} 2.82\%} & {\color{Red} 0.44\%} \\
+      10 & 2 & {\color{ForestGreen} 2.52\%} & {\color{Red} 0.34\%} & 26 & 0 & {\color{Red} 0.52\%} & {\color{ForestGreen} 1.16\%} \\
+      11 & 4 & {\color{ForestGreen} 2.84\%} & {\color{Red} 0.38\%} & 27 & 2 & {\color{ForestGreen} 1.60\%} & {\color{Red} 0.52\%} \\
+      12 & 1 & {\color{ForestGreen} 1.58\%} & {\color{Red} 0.20\%} & 28 & 1 & {\color{ForestGreen} 1.88\%} & {\color{Red} 0.26\%} \\
+      13 & 1 & {\color{ForestGreen} 2.94\%} & {\color{Red} 0.88\%} & 29 & 1 & {\color{ForestGreen} 5.94\%} & {\color{Red} 1.74\%} \\
+      14 & 0 & {\color{Red} 1.06\%} & {\color{ForestGreen} 1.52\%} & 30 & 0 & {\color{Red} 0.94\%} & {\color{ForestGreen} 2.46\%} \\
+      15 & 2 & {\color{ForestGreen} 2.20\%} & {\color{Red} 0.36\%} & 31 & 2 & {\color{ForestGreen} 4.18\%} & {\color{Red} 0.74\%} \\
+      \hline
+   \end{tabular}
+   \caption{The {\color{ForestGreen} green} numbers show the percentages of the give state showing up with the correct marking in the experiments, while the {\color{Red} red} ones show incorrect markings.}
+   \label{table:oracle}
+\end{table}
 
-\medskip
-
-\subsection{Full GFPS testing on IonQ's Harmony and Aria $2$:}
-
-We tested $6$ randomly generated $5$-vertex graphs with target probability chosen so that the query complexity is $1$ on IonQ's Harmony QPU. Several trials for each graph were taken and the trial with the highest success probability was recorded for each graph. Because the algorithm is probabilistic and further bounded by some nonzero error, there can be no guarantee of a success probability of \%100. These results were compared with the random probability of measuring cuts above the threshold (that is $\lambda$). The results of these experiments are displayed in \Cref{fig:Harmony}.
-
-\begin{figure}[!h]
-   \centering
-   \includegraphics[width=.5\linewidth]{100shotGraph.png}
-   \caption{$100$ shot}
-   \label{fig:Harmony}
-\end{figure} 
-
-At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
+While the oracle is $2$--$5$ times more likely to correctly mark states, further experiments and simulations (not listed here) show that contemporary QPUs are too noisy to run our circuits without error correction.
 
 \bigskip
 
