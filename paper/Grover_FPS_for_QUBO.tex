@@ -159,11 +159,12 @@
 
 \author{\'Akos Nagy}
 \address[\'Akos Nagy]{BEIT Canada, Toronto, Ontario}
-\urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
 \email{\href{mailto:akos@beit.tech}{akos@beit.tech}}
+\urladdr{\href{https://akosnagy.com/}{akosnagy.com}}
 
 \author{Jaime Park}
 \address[Jaime Park]{}
+\email{\href{mailto:jaime.s.park@vanderbilt.edu}{jaime.s.park@vanderbilt.edu}}
 
 \author{Cindy Zhang}
 \address[Cindy Zhang]{}
@@ -208,6 +209,8 @@
 
 Quadratic (Unconstrained) Binary Optimization problems provide some of the most interesting NP-Complete problems, such as cluster analysis, maximal graph cuts, or the Ising model. Approximation algorithms for such problems have been extensively studied for a long time both via classical methods and, more recently, using Quantum Computation {\color{red} add citations}.
 
+\emph{to be completed later...}
+
 \medskip
 
 \subsection{Results:}
@@ -218,7 +221,7 @@ Quadratic (Unconstrained) Binary Optimization problems provide some of the most 
 
 \smallskip
 
-\subsection*{Acknowledgment:} We are grateful to Amazon Web Services and QLab for providing credits to access IonQ's QPUs. We also thank to Constantin Gonciulea for providing feedback on an earlier version of the work and QuForce.org for bringing the authors together for the project. \Cref{sec:grover_for_qubo} introduces the Grover Fixed-point search for QUBOs
+\subsection*{Acknowledgment:} We are grateful to Amazon Web Services and QLab for providing credits to access IonQ's QPUs. We also thank to Constantin Gonciulea for providing feedback on an earlier version of the work and QuForce.org for bringing the authors together for the project. \Cref{sec:grover_for_qubo} introduces the Grover Fixed-point search for QUBOs.
 
 \bigskip
 
@@ -337,7 +340,6 @@ and $d \in \Z_+$ large enough so that all values of $f$ can be digitized on $m$ 
       \lstick{$\ket{0}_d$}   & \qw  & & \qw & \gate{\cP \( A_I \)}   & \qw \ \ldots \ & \qw & \gate{\QFT_d^\dagger} & \qw
    \end{quantikz}
 \end{equation}
-
 
 \medskip
 
@@ -517,7 +519,6 @@ with threshold $y = 5$ that is, in fact, the maximum. Out of the $2^5 = 32$ conf
       \hline
       index & $y - f (x)$ & not marked & marked & index & $f (x) - y$ & not marked & marked \\
       \hline
-      0 & 5 & {\color{ForestGreen} 3.44\%} & {\color{Red} 0.74\%} & 16 & 3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.66\%} \\
       1 & 3 & {\color{ForestGreen} 1.68\%} & {\color{Red} 0.36\%} & 17 & 1 & {\color{ForestGreen} 1.06\%} & {\color{Red} 0.26\%} \\
       2 & 4 & {\color{ForestGreen} 3.18\%} & {\color{Red} 0.52\%} & 18 & 2 & {\color{ForestGreen} 1.04\%} & {\color{Red} 0.30\%} \\
       3 & 4 & {\color{ForestGreen} 4.08\%} & {\color{Red} 0.86\%} & 19 & 2 & {\color{ForestGreen} 2.02\%} & {\color{Red} 0.48\%} \\
@@ -540,6 +541,36 @@ with threshold $y = 5$ that is, in fact, the maximum. Out of the $2^5 = 32$ conf
 \end{table}
 
 While the oracle is $2$--$5$ times more likely to correctly mark states, further experiments and simulations (not listed here) show that contemporary QPUs are too noisy to run our circuits without error correction.
+
+\begin{comment}
+\subsection{Summary of Experiments}
+
+We demonstrate GFPS for IonQ’s Harmony quantum computer with 9 algorithmic all-to-all connected qubits. 6 randomly generated 5-vertice graphs with query complexity of 1 and error bound of $1*10^{-5}$ were tested on Harmony. Several trials for each graph were taken and the trial with highest success probability was recorded for each graph. Because the algorithm is probabilistic and further bounded by some non-zero error, there can be no guarantee of a success probability of \%100. These results were compared with the random probability of measuring cuts above the threshold (ie $N2^{1-v}$) where v represents the number of vertices and N represents the number of cuts above the threshold. The results of these experiments are displayed in FIGURE 1.
+
+\begin{figure}[!h]
+   \begin{subfigure}{.5\textwidth}
+   \centering
+   \includegraphics[width=.8\linewidth]{100shotGraph.png}
+   \caption{100 shot}
+   \label{fig:sfig1}
+   \end{subfigure}%
+   \begin{subfigure}{.5\textwidth}
+   \centering
+   \includegraphics[width=.8\linewidth]{500shotGraph.png}
+   \caption{500 shot}
+   \label{fig:sfig2}
+   \end{subfigure}
+   \caption{Success probabilities of Grover's FPS run on IonQ's Harmony with 100 and 500 shots. The measured success probability is shown in blue while the random probability <where eq?> is in red}
+   \label{fig:fig}
+\end{figure} 
+
+At 100 shots, GFPS has a higher probability of finding the maximal cut than by searching randomly. As the shot number increases to 500, this probability decreases and seems to converge with the random probability for graphs 5 and 6. However, neither of these experiments on harmony display significant increased success probability, that is to say, most advantage that the proposed oracle provides is destroyed by the noise present in NISQ devices.
+
+\medskip
+\section{Simulation using small graph}
+\label{sec:smallgraphs}
+   
+\end{comment}
 
 \bigskip
 
