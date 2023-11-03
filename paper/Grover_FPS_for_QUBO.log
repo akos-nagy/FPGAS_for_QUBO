@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  24 OCT 2023 09:11
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023/Arch Linux) (preloaded format=xelatex 2023.6.16)  3 NOV 2023 12:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -12,6 +12,8 @@ Document Class: amsart 2020/05/29 v2.20.6
 \normalparindent=\dimen141
 \normaltopskip=\skip48
 Font mapping `tex-text.tec' for font `[lmroman10-regular]:mapping=tex-text;' no
+t found.
+Font mapping `tex-text.tec' for font `[lmroman12-regular]:mapping=tex-text;' no
 t found.
 (/usr/share/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2022/04/08 v2.17n AMS math features
@@ -1068,11 +1070,11 @@ LaTeX Font Info:    Trying to load font information for FMX+futm on input line
 File: fmxfutm.fd futm-extension
 )
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 142.
+(Font)              scaled to size 11.03998pt on input line 142.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 142.
+(Font)              scaled to size 8.27998pt on input line 142.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 142.
+(Font)              scaled to size 6.43999pt on input line 142.
 LaTeX Font Info:    Trying to load font information for U+msa on input line 142
 .
 
@@ -1098,12 +1100,28 @@ LaTeX Font Info:    Trying to load font information for FML+futm on input line
 File: fmlfutm.fd 2004/10/30 Fontinst v1.926 font definitions for FML/futm.
 )
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 9.19998pt on input line 142.
+(Font)              scaled to size 11.03998pt on input line 142.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.99199pt on input line 142.
+(Font)              scaled to size 8.27998pt on input line 142.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 5.51999pt on input line 142.
+(Font)              scaled to size 6.43999pt on input line 142.
 )
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+shapes.geometric.code.tex
+File: tikzlibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/shapes/pgflibraryshapes.geomet
+ric.code.tex
+File: pgflibraryshapes.geometric.code.tex 2023-01-15 v3.1.10 (3.1.10)
+))
+(/usr/share/texmf-dist/tex/generic/pgf/frontendlayer/tikz/libraries/tikzlibrary
+arrows.code.tex
+File: tikzlibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+
+(/usr/share/texmf-dist/tex/generic/pgf/libraries/pgflibraryarrows.code.tex
+File: pgflibraryarrows.code.tex 2023-01-15 v3.1.10 (3.1.10)
+\arrowsize=\dimen305
+))
 (/usr/share/texmf-dist/tex/latex/caption/subcaption.sty
 Package: subcaption 2023/02/19 v1.6 Sub-captions (AR)
 
@@ -1112,14 +1130,14 @@ Package: caption 2023/03/12 v3.6j Customizing captions (AR)
 
 (/usr/share/texmf-dist/tex/latex/caption/caption3.sty
 Package: caption3 2023/03/12 v2.4 caption3 kernel (AR)
-\caption@tempdima=\dimen305
-\captionmargin=\dimen306
-\caption@leftmargin=\dimen307
-\caption@rightmargin=\dimen308
-\caption@width=\dimen309
-\caption@indent=\dimen310
-\caption@parindent=\dimen311
-\caption@hangindent=\dimen312
+\caption@tempdima=\dimen306
+\captionmargin=\dimen307
+\caption@leftmargin=\dimen308
+\caption@rightmargin=\dimen309
+\caption@width=\dimen310
+\caption@indent=\dimen311
+\caption@parindent=\dimen312
+\caption@hangindent=\dimen313
 Package caption Info: AMS or SMF document class detected.
 
 (/usr/share/texmf-dist/tex/latex/caption/caption-ams-smf.sto
@@ -1136,61 +1154,65 @@ Package caption Info: New subtype `subtable' on input line 239.
 \c@subtable=\count336
 )
 \c@theorem=\count337
-Package hyperref Info: Option `unicode' set `true' on input line 190.
-Package hyperref Info: Option `pdffitwindow' set `true' on input line 190.
-Package hyperref Info: Option `pdftoolbar' set `false' on input line 190.
-Package hyperref Info: Option `pdfmenubar' set `false' on input line 190.
-Package hyperref Info: Option `hypertexnames' set `true' on input line 190.
-Package hyperref Info: Option `colorlinks' set `true' on input line 190.
+Package hyperref Info: Option `unicode' set `true' on input line 197.
+Package hyperref Info: Option `pdffitwindow' set `true' on input line 197.
+Package hyperref Info: Option `pdftoolbar' set `false' on input line 197.
+Package hyperref Info: Option `pdfmenubar' set `false' on input line 197.
+Package hyperref Info: Option `hypertexnames' set `true' on input line 197.
+Package hyperref Info: Option `colorlinks' set `true' on input line 197.
 
 (./Grover_FPS_for_QUBO.aux)
 \openout1 = `Grover_FPS_for_QUBO.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 200.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 207.
 LaTeX Font Info:    Trying to load font information for TS1+cmr on input line 2
-00.
+07.
  (/usr/share/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2022/07/10 v2.5l Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 200.
-LaTeX Font Info:    ... okay on input line 200.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for FML/futm/m/it on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for FMS/futm/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for FMX/futm/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 207.
+LaTeX Font Info:    ... okay on input line 207.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 200.
+(Font)              scaled to size 9.19998pt on input line 207.
 LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
-(Font)              scaled to size 6.25598pt on input line 200.
+(Font)              scaled to size 6.99199pt on input line 207.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 207.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 7.35999pt on input line 200.
+(Font)              scaled to size 9.19998pt on input line 207.
 LaTeX Font Info:    Font shape `U/futm/m/n' will be
-(Font)              scaled to size 6.25598pt on input line 200.
-LaTeX Info: Redefining \microtypecontext on input line 200.
-Package microtype Info: Applying patch `item' on input line 200.
-Package microtype Info: Applying patch `toc' on input line 200.
-Package microtype Info: Applying patch `eqnum' on input line 200.
-Package microtype Info: Applying patch `footnote' on input line 200.
-Package microtype Info: Applying patch `verbatim' on input line 200.
+(Font)              scaled to size 6.99199pt on input line 207.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 5.51999pt on input line 207.
+LaTeX Info: Redefining \microtypecontext on input line 207.
+Package microtype Info: Applying patch `item' on input line 207.
+Package microtype Info: Applying patch `toc' on input line 207.
+Package microtype Info: Applying patch `eqnum' on input line 207.
+Package microtype Info: Applying patch `footnote' on input line 207.
+Package microtype Info: Applying patch `verbatim' on input line 207.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using default protrusion set `alltext'.
 Package microtype Info: No adjustment of tracking.
@@ -1201,8 +1223,8 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `futs' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-LaTeX Font Info:    Redeclaring math accent \widehat on input line 200.
-LaTeX Font Info:    Redeclaring math accent \widetilde on input line 200.
+LaTeX Font Info:    Redeclaring math accent \widehat on input line 207.
+LaTeX Font Info:    Redeclaring math accent \widetilde on input line 207.
 
 (./Grover_FPS_for_QUBO.brf)
 \tf@brf=\write4
@@ -1243,7 +1265,7 @@ LaTeX Font Info:    Redeclaring math accent \widetilde on input line 200.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring ON on input line 200.
+Package hyperref Info: Link coloring ON on input line 207.
 (./Grover_FPS_for_QUBO.out) (./Grover_FPS_for_QUBO.out)
 \@outlinefile=\write5
 \openout5 = `Grover_FPS_for_QUBO.out'.
@@ -1258,102 +1280,69 @@ File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
-LaTeX Font Info:    Trying to load font information for U+bbm on input line 231
+LaTeX Font Info:    Trying to load font information for U+bbm on input line 217
 .
 
 (/usr/share/texmf-dist/tex/latex/bbm-macros/ubbm.fd
 File: ubbm.fd 1999/03/15 V 1.2 Font definition for bbm font - TH
 ) [1]
-Overfull \hbox (3.13246pt too wide) in paragraph at lines 239--240
-[]\T1/futs/m/n/10 Briefly, the quan-tum dic-tio-nary, cor-re-spond-ing to a fun
-c-tion (thought of as a clas-si-cal dic-tio-nary), $\FML/futmi/m/it/10 F \T1/fu
-ts/m/n/10 : [][][][][] \FMS/futm/m/n/10 !
+Underfull \vbox (badness 4832) has occurred while \output is active []
+
+ [2]
+Overfull \hbox (34.69746pt too wide) in paragraph at lines 235--236
+\T1/futs/m/n/12 mal cuts of ran-domly gen-er-ated graphs, is avail-able at [][]
+github.com/akos-nagy/Grover_FPS_for_QUBO[][]. 
  []
 
-[2]
 
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
-
-
-LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
-(Font)              using `T1/futs/m/sc' instead on input line 323.
+Overfull \hbox (11.05263pt too wide) in paragraph at lines 257--258
+\T1/futs/m/n/12 first defin-ing $\FML/futmi/m/it/12 F\T1/futs/m/n/12 (\FML/futm
+i/m/it/12 x\T1/futs/m/n/12 )$ to be the dig-its of $\FML/futmi/m/it/12 f\T1/fut
+s/m/n/12 (\FML/futmi/m/it/12 x\T1/futs/m/n/12 )$, then set-ting, by a slight ab
+use of no-ta-tion, $[] \FMS/futm/m/n/12 ^^81
+ []
 
 [3]
-Underfull \vbox (badness 1622) has occurred while \output is active []
 
- [4]
-[5] [6] [7] (./Grover_FPS_for_QUBO.bbl)
-LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 5
-86.
+LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
+(Font)              using `T1/futs/m/sc' instead on input line 264.
+
+
+LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
+(Font)              using `T1/futs/m/sc' instead on input line 266.
+
+
+LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
+(Font)              using `T1/futs/m/sc' instead on input line 266.
+
+[4]
+
+LaTeX Font Warning: Font shape `T1/futs/m/scit' undefined
+(Font)              using `T1/futs/m/sc' instead on input line 345.
+
+
+Underfull \vbox (badness 10000) has occurred while \output is active []
+
+ [5]
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 362.
+LaTeX Font Info:    Font shape `FMX/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 362.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 7.35999pt on input line 362.
+LaTeX Font Info:    Font shape `U/futm/m/n' will be
+(Font)              scaled to size 6.25598pt on input line 362.
+
+Underfull \vbox (badness 1264) has occurred while \output is active []
+
+ [6]
+[7] [8] [9] [10] [11]
+
+LaTeX Warning: `!h' float specifier changed to `!ht'.
+
+[12] (./Grover_FPS_for_QUBO.bbl [13])
+LaTeX Font Info:    Trying to load font information for T1+lmtt on input line 6
+55.
 
 (/usr/share/texmf-dist/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2015/05/01 v1.6.1 Font defs for Latin Modern
@@ -1362,21 +1351,17 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `lmtt' (encoding: T1).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Underfull \vbox (badness 2042) has occurred while \output is active []
-
- [8]
-[9] (./Grover_FPS_for_QUBO.aux)
+ [14] (./Grover_FPS_for_QUBO.aux)
 Package rerunfilecheck Info: File `Grover_FPS_for_QUBO.out' has not changed.
-(rerunfilecheck)             Checksum: 220924F2E8E621CDC04EC11E3E334103;2782.
+(rerunfilecheck)             Checksum: 5D02F61E9B441445A13A72712C4E4175;2939.
  ) 
 Here is how much of TeX's memory you used:
- 36455 strings out of 476683
- 712126 string characters out of 5809790
- 1924018 words of memory out of 5000000
- 55929 multiletter control sequences out of 15000+600000
- 607975 words of font info for 95 fonts, out of 8000000 for 9000
+ 37636 strings out of 476683
+ 742201 string characters out of 5809790
+ 1912018 words of memory out of 5000000
+ 57093 multiletter control sequences out of 15000+600000
+ 627308 words of font info for 123 fonts, out of 8000000 for 9000
  1509 hyphenation exceptions out of 8191
- 100i,23n,131p,1187b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 100i,23n,131p,2049b,1327s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on Grover_FPS_for_QUBO.pdf (9 pages).
+Output written on Grover_FPS_for_QUBO.pdf (14 pages).
