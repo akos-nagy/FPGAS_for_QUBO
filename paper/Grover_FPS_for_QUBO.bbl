@@ -103,6 +103,14 @@
          url={https://dx.doi.org/10.1088/1674-1056/ab4e88},
 }
 
+\bib{github_fpgs_for_qubo}{misc}{
+      author={Nagy, \'Akos},
+       title={{GitHub repository for the implementation of the Fixed-point
+  Grover Search circuit for Quadratic Binary Optimization Problems}},
+        note={Available at
+  \href{https://github.com/akos-nagy/Grover_FPS_for_QUBO}{github.com/akos-nagy/Grover\_FPS\_for\_QUBO}},
+}
+
 \bib{nielsen_quantum_2010}{book}{
       author={{Nielsen, Michael A. and Chuang, Isaac L.}},
        title={{Quantum Computation and Quantum Information: 10th Anniversary
